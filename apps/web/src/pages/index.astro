@@ -1,0 +1,19 @@
+---
+import ListGPSchedule from '../components/calendar/ListGPSchedule.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/header/Header.astro';
+import Drawer from '../components/navigation/Drawer.astro';
+import BaseSectionLayout from '../layouts/BaseSectionLayout.astro';
+import NextEventCountdown from '../components/calendar/NextEventCountdown.astro';
+---
+
+<BaseLayout title="Full Wet" description="Formula 1 en vivo. Resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.">
+	<Header />
+	<div class="flex">
+		<div class="hidden md:block"><Drawer /></div>
+		<BaseSectionLayout>
+			<NextEventCountdown />
+			<ListGPSchedule />
+		</BaseSectionLayout>
+	</div>
+</BaseLayout>

@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Season {
+  year  Int    @id
+  races Race[]
+}
+
+model Circuit {
+  id        String   @id
+  name      String
+  location  String
+  country   String
+  length    Float?   // En km
+  record    String?  // Formato MM:SS.mmm
+  races     Race[]
+}
+
+model Team {
+  id           String        @id // Ej: "red_bull"
+  name         String
+  base         String?
+  chief        String?
+  chassis      String?
+  engine       String?
+  drivers      Driver[]
+  results      RaceResult[]
+  qualifyingResults QualifyingResult[]
+  sprintResults     SprintResult[]     // Resultados Sábado (Sprint)
+}
+
+model Driver {
+  id           String        @id // Ej: "max_verstappen"
+  name         String
+  number       Int?
+  nationality  String?
+  teamId       String
+  team         Team          @relation(fields: [teamId], references: [id])
+  results      RaceResult[]
+  qualifyingResults QualifyingResult[]
+  sprintResults     SprintResult[]     // Resultados Sábado (Sprint)
+}
+
+model Race {
+  id              Int              @id @default(autoincrement())
+  seasonYear      Int
+  season          Season           @relation(fields: [seasonYear], references: [year])
+  round           Int
+  name            String
+  date            DateTime         // Fecha de la Carrera (GP)
+  circuitId       String
+  circuit         Circuit          @relation(fields: [circuitId], references: [id])
+  
+  // Nuevos campos para sesiones de entrenamiento y clasificación
+  firstPractice   DateTime?
+  secondPractice  DateTime?
+  thirdPractice   DateTime?
+  qualifying      DateTime?
+  sprint          DateTime?        // Por si hay fin de semana Sprint
+  
+  results         RaceResult[]
+  qualifyingResults QualifyingResult[]
+  sprintResults     SprintResult[]     // Resultados Sábado (Sprint)
+
+  @@unique([seasonYear, round])
+}
+
+model QualifyingResult {
+  id         Int      @id @default(autoincrement())
+  raceId     Int
+  race       Race     @relation(fields: [raceId], references: [id])
+  driverId   String
+  driver     Driver   @relation(fields: [driverId], references: [id])
+  teamId     String
+  team       Team     @relation(fields: [teamId], references: [id])
+  position   Int
+  q1         String?  // Guardamos como String "1:12.345"
+  q2         String?
+  q3         String?
+
+  @@unique([raceId, driverId])
+}
+
+model SprintResult {
+  id         Int      @id @default(autoincrement())
+  raceId     Int
+  race       Race     @relation(fields: [raceId], references: [id])
+  driverId   String
+  driver     Driver   @relation(fields: [driverId], references: [id])
+  teamId     String
+  team       Team     @relation(fields: [teamId], references: [id])
+  position   Int
+  points     Float    @default(0)
+  grid       Int?
+  status     String?  // Finished, DNF, etc.
+  laps       Int?
+
+  @@unique([raceId, driverId])
+}
+
+model RaceResult {
+  id           Int      @id @default(autoincrement())
+  raceId       Int
+  race         Race     @relation(fields: [raceId], references: [id])
+  driverId     String
+  driver       Driver   @relation(fields: [driverId], references: [id])
+  teamId       String
+  team         Team     @relation(fields: [teamId], references: [id])
+  position     Int?
+  points       Float    @default(0)
+  grid         Int?
+  fastestLap   Boolean  @default(false)
+  status       String?  // Finished, DNF, etc.
+  laps       Int?
+
+  @@unique([raceId, driverId])
+}
+
+model Champion {
+  year           Int     @id
+  driverName     String
+  constructorName String
+}

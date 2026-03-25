@@ -1,0 +1,99 @@
+---
+const nextRace = await fetch('http://localhost:3000/api/calendar/next')
+  .then(res => res.json())
+  .catch(() => null);
+---
+
+<section class="relative overflow-hidden bg-wet-gradient border border-brand-card py-4 px-4 md:p-8 rounded-2xl my-5 group w-full md:w-5/6">
+  <!-- Efecto de resplandor ambiental estético y "mojado" -->
+  <div class="absolute -top-24 -right-24 w-96 h-96 bg-accent-glow rounded-full blur-3xl opacity-50 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none"></div>
+
+  {nextRace ? (
+    <div class="relative z-10 flex flex-col xl:flex-row justify-between items-center gap-10">
+
+      <div class="text-center xl:text-left">
+        <div class="inline-flex items-center gap-2 mb-3">
+          <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse shadow-[0_0_8px_#00D1FF]"></span>
+          <p class="text-brand-accent font-bold uppercase tracking-[0.2em] text-xs">Próximo Gran Premio</p>
+        </div>
+        <h2 class="text-lg md:text-2xl font-black text-white mb-3 tracking-tight drop-shadow-md">{nextRace.name}</h2>
+        <p class="text-brand-muted font-medium text-lg flex items-center justify-center xl:justify-start gap-2">
+          <!-- Icono simple de ubicación -->
+          <svg class="w-5 h-5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          {nextRace.circuit.name}, {nextRace.circuit.location}
+        </p>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4 text-center" id="countdown" data-date={nextRace?.date}>
+        <!-- Días -->
+        <div class="flex flex-col justify-center items-center bg-brand-dark/60 backdrop-blur-md border border-brand-card p-4 md:p-5 rounded-xl min-w-[80px] md:min-w-[110px] shadow-inner transition-transform hover:-translate-y-1 hover:border-brand-accent/30 duration-300">
+          <span id="days" class="font-mono text-lg md:text-2xl font-bold text-white mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">00</span>
+          <span class="text-[10px] md:text-xs uppercase tracking-widest text-brand-muted font-bold">Días</span>
+        </div>
+        
+        <!-- Horas -->
+        <div class="flex flex-col justify-center items-center bg-brand-dark/60 backdrop-blur-md border border-brand-card p-4 md:p-5 rounded-xl min-w-[80px] md:min-w-[110px] shadow-inner transition-transform hover:-translate-y-1 hover:border-brand-accent/30 duration-300">
+          <span id="hours" class="font-mono text-lg md:text-2xl font-bold text-white mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">00</span>
+          <span class="text-[10px] md:text-xs uppercase tracking-widest text-brand-muted font-bold">Horas</span>
+        </div>
+        
+        <!-- Minutos -->
+        <div class="flex flex-col justify-center items-center bg-brand-dark/60 backdrop-blur-md border border-brand-card p-4 md:p-5 rounded-xl min-w-[80px] md:min-w-[110px] shadow-inner transition-transform hover:-translate-y-1 hover:border-brand-accent/30 duration-300">
+          <span id="minutes" class="font-mono text-lg md:text-2xl font-bold text-white mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">00</span>
+          <span class="text-[10px] md:text-xs uppercase tracking-widest text-brand-muted font-bold">Min</span>
+        </div>
+        
+        <!-- Segundos (Hero box con branding principal) -->
+        <div class="flex flex-col justify-center items-center bg-brand-dark/80 backdrop-blur-md border border-brand-accent/40 p-4 md:p-5 rounded-xl min-w-[80px] md:min-w-[110px] ring-1 ring-brand-accent/20 relative overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(0,209,255,0.15)] duration-300">
+          <!-- Soft cyan overlay tint -->
+          <div class="absolute inset-0 bg-brand-accent/[0.03]"></div>
+          <span id="seconds" class="relative z-10 font-mono text-lg md:text-2xl font-bold text-brand-accent mb-1 drop-shadow-[0_0_12px_rgba(0,209,255,0.6)]">00</span>
+          <span class="relative z-10 text-[10px] md:text-xs uppercase tracking-widest text-brand-accent/80 font-bold">Seg</span>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div class="relative z-10 text-center py-8">
+      <span class="inline-flex justify-center items-center w-16 h-16 rounded-full bg-brand-card mb-4 text-brand-muted/70 ring-1 ring-white/5">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+      </span>
+      <h3 class="text-2xl font-bold text-white mb-2">Temporada sin datos</h3>
+      <p class="text-brand-muted">No hay información de sesiones programadas para el evento.</p>
+    </div>
+  )}
+</section>
+
+<script>
+	const countdownEl = document.getElementById('countdown');
+
+  const dateAttr = countdownEl!.dataset.date;
+
+  const targetDate = new Date(dateAttr!).getTime();
+	const countdownInterval = setInterval(() => {
+		const now = new Date().getTime();
+		const difference = targetDate - now;
+		let d = 0;
+		let h = 0;
+		let m = 0;
+		let s = 0;
+		if (difference <= 0) {
+			// Tiempo alcanzado o superado: detener intervalo
+			clearInterval(countdownInterval);
+		} else {
+			d = Math.floor(difference / (1000 * 60 * 60 * 24));
+			h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+			s = Math.floor((difference % (1000 * 60)) / 1000);
+		}
+		// Mostrar los valores (ya sean reales o ceros)
+    const days = document.getElementById('days');
+    const hours = document.getElementById('hours');
+    const minutes = document.getElementById('minutes');
+    const seconds = document.getElementById('seconds');
+    if (!days || !hours || !minutes || !seconds) return;
+		days.textContent = d.toString();
+		hours.textContent = h.toString();
+		minutes.textContent = m.toString();
+		seconds.textContent = s.toString();
+	}, 1000);
+</script>

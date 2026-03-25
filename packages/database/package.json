@@ -1,0 +1,29 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/client.ts",
+  "types": "./src/client.ts",
+  "exports": {
+    ".": "./src/client.ts"
+  },
+  "type": "module",
+  "scripts": {
+    "db:migrate": "pnpm dlx prisma migrate dev",
+    "db:generate": "pnpm dlx prisma generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "@types/pg": "8.20.0",
+    "prisma": "7.5.0"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "7.5.0",
+    "@prisma/client": "7.5.0",
+    "dotenv": "17.3.1",
+    "pg": "8.20.0"
+  }
+}

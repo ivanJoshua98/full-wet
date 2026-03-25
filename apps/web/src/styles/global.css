@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  /* === Colors === */
+  /* El alma de Full Wet */
+  --color-brand-dark: #0B0E14;    /* Fondo principal (Asfalto oscuro) */
+  --color-brand-card: #151921;    /* Fondo de tarjetas y secciones */
+  --color-brand-accent: #00D1FF;  /* Azul Cian (Neumático Full Wet / Lluvia) */
+  --color-brand-muted: #64748B;   /* Texto secundario */
+  --color-brand-win: #FFD700;     /* Dorado para el ganador / Pole */
+
+  /* Colores de los equipos principales */
+  --color-f1-redbull: #0600EF;
+  --color-f1-ferrari: #EF1A2D;
+  --color-f1-mercedes: #00A19C;
+  --color-f1-mclaren: #FF8700;
+  --color-f1-aston: #006F62;
+  
+  /* Agregados para otros equipos de la parrilla (Opcional, pero muy util) */
+  --color-f1-alpine: #FF87BC;
+  --color-f1-williams: #005AFF;
+  --color-f1-haas: #FFFFFF;
+  --color-f1-sauber: #00E701;
+  --color-f1-visa: #1534CC;
+
+  /* === Fonts === */
+  /* Fuentes modernas corporativas / deportivas */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace; /* Ideal para tabular tiempos (ej. 01:22.435) */
+
+  /* === Gradients / Backgrounds === */
+  --background-image-wet-gradient: linear-gradient(to bottom right, var(--color-brand-card), var(--color-brand-dark));
+  --background-image-accent-glow: radial-gradient(circle, rgba(0, 209, 255, 0.15) 0%, rgba(11, 14, 20, 0) 70%);
+}
+
+/* Base de la aplicación */
+html, body {
+  background-color: var(--color-brand-dark);
+  color: white;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

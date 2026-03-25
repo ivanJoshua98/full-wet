@@ -1,0 +1,25 @@
+{
+  "name": "full-wet",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Portal informativo para entusiastas de la Fórmula 1",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm run -r --parallel dev",
+    "dev:web": "pnpm run --filter full-wet-frontend dev",
+    "dev:web-build": "pnpm run --filter full-wet-frontend build",
+    "dev:web-preview": "pnpm run --filter full-wet-frontend preview",
+    "dev:api": "pnpm run --filter full-wet-api dev",
+    "dev:api-build": "pnpm run --filter full-wet-api build",
+    "dev:api-start": "pnpm run --filter full-wet-api start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.15.0",
+  "devDependencies": {
+    "@types/node": "25.5.0",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3"
+  }
+}

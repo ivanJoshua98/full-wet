@@ -1,0 +1,94 @@
+---
+import MenuIcon from "../icons/MenuIcon.astro";
+import MobileDrawer from "../navigation/MobileDrawer.astro";
+---
+
+<div class="relative block md:hidden" id="mobile-menu-wrapper">
+  <!-- Botón Trigger -->
+  <button 
+    id="mobile-menu-button" 
+    class="flex p-2 bg-brand-dark rounded-full shadow-sm transition-colors"
+    aria-expanded="false"
+    aria-label="Abrir menú de navegación"
+  >
+    <MenuIcon size="h-6 w-6"/>
+  </button>
+  <div 
+    id="mobile-menu-overlay" 
+    class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden transition-opacity duration-300 opacity-0"
+    aria-hidden="true"
+  ></div>
+  <MobileDrawer />
+</div>
+
+<style>
+  /* Custom scrollbar para el interior del menú */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.3);
+    border-radius: 20px;
+  }
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(71, 85, 105, 0.5);
+  }
+</style>
+
+<script>
+  function initMobileMenu() {
+    const openBtn = document.getElementById('mobile-menu-button');
+    const closeBtn = document.getElementById('close-mobile-menu');
+    const drawer = document.getElementById('mobile-menu-drawer');
+    const overlay = document.getElementById('mobile-menu-overlay');
+
+    if (openBtn && closeBtn && drawer && overlay) {
+      const openMenu = () => {
+        openBtn.setAttribute('aria-expanded', 'true');
+        
+        // Mostrar overlay
+        overlay.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          overlay.classList.remove('opacity-0');
+          overlay.classList.add('opacity-100');
+        });
+
+        // Deslizar drawer
+        drawer.classList.remove('-translate-x-full');
+        drawer.classList.add('translate-x-0');
+        
+        // Bloquear scroll de la página
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeMenu = () => {
+        openBtn.setAttribute('aria-expanded', 'false');
+        
+        // Ocultar overlay
+        overlay.classList.remove('opacity-100');
+        overlay.classList.add('opacity-0');
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+        }, 300); // 300ms es el duration de Tailwind
+
+        // Ocultar drawer
+        drawer.classList.remove('translate-x-0');
+        drawer.classList.add('-translate-x-full');
+        
+        // Restaurar scroll
+        document.body.style.overflow = '';
+      };
+
+      openBtn.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+    }
+  }
+
+  // Inicializar script
+  initMobileMenu();
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>

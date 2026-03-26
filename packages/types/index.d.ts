@@ -22,4 +22,33 @@ export namespace models {
         length: number | null;
         record: string | null;
     }
+
+    export interface RaceResult {
+        id: string;
+        raceId: string;
+        driverId: string;
+        teamId: string;
+        position: number | null;
+        points: number;
+        fastestLap: string | null;
+        fastestLapTime: string | null;
+        fastestLapSpeed: string | null;
+        driver: Driver;
+        team: Team;
+    }
+
+    export interface Driver {
+        id: string;
+        firstName: string;
+        lastName: string;
+        number: number | null;
+        nationality: string;
+        dateOfBirth: Date | null;
+    }
+
+    export interface Team {
+        id: string;
+        name: string;
+        country: string;
+    }
 }

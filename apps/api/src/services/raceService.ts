@@ -1,7 +1,7 @@
 import { prisma } from "database";
-import { type models } from "types";
+import type { models } from "types";
 
-export async function getCalendar(year: number) {
+export async function getRacesByYear(year: number) {
   const races = await prisma.race.findMany({
     where: { seasonYear: year },
     include: {
@@ -12,9 +12,10 @@ export async function getCalendar(year: number) {
   return races as models.Race[];
 }
 
-export async function getNextRace() {
+export async function getNextRace(year: number) {
   const nextRace = await prisma.race.findFirst({
     where: {
+      seasonYear: year,
       date: { gte: new Date() }
     },
     orderBy: { date: 'asc' },

@@ -1,0 +1,12 @@
+---
+import Header from '../components/header/Header.astro';
+import Drawer from '../components/navigation/Drawer.astro';
+import BaseSectionLayout from './BaseSectionLayout.astro';
+---
+<Header />
+<div class="flex">
+	<div class="hidden md:block"><Drawer /></div>
+	<BaseSectionLayout>
+    <slot />
+	</BaseSectionLayout>
+</div>  

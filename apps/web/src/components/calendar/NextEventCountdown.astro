@@ -1,7 +1,7 @@
 ---
-const nextRace = await fetch('http://localhost:3000/api/calendar/next')
-  .then(res => res.json())
-  .catch(() => null);
+import { getNextRace } from "../../controllers/calendarController";
+
+const nextRace = await getNextRace();
 ---
 
 <section class="relative overflow-hidden bg-wet-gradient border border-brand-card py-4 px-4 md:p-8 rounded-2xl my-5 group w-full md:w-5/6">

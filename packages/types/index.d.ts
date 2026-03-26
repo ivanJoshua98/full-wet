@@ -11,5 +11,15 @@ export namespace models {
         secondPractice: Date | null;
         thirdPractice: Date | null;
         qualifying: Date | null;
+        circuit: Circuit;
+    }
+
+    export interface Circuit {
+        id: string;
+        name: string;
+        location: string;
+        country: string;
+        length: number | null;
+        record: string | null;
     }
 }

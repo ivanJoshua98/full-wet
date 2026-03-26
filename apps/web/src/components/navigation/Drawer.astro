@@ -1,3 +1,7 @@
+---
+const year = new Date().getFullYear();
+---
+
 
 <div class="h-full min-h-screen w-full md:min-w-[20vw] md:max-w-[25vw] flex-1 px-4">
   <nav class="py-6 text-slate-100" aria-label="Navegación principal">
@@ -11,27 +15,27 @@
         </a>
       </li>
       <li>
-        <a href="/calendario" class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
+        <a href={`/seasons/${year}`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
           Calendario
         </a>
       </li>
       <li>
-        <a href="/campeonato-pilotos" class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
+        <a href={`/season/${year}/drivers`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
           Campeonato de pilotos
         </a>
       </li>
       <li>
-        <a href="/campeonato-constructores" class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
+        <a href={`/season/${year}/constructors`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
           Campeonato de constructores
         </a>
       </li>
       <li>
-        <a href="/escuderias" class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
+        <a href={`/season/${year}/teams`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
           Escuderías
         </a>
       </li>
       <li>
-        <a href="/temporadas-pasadas" class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
+        <a href={`/season/${year}/past-seasons`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
           Temporadas pasadas
         </a>
       </li>

@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllSeasons } from '../../controllers/seasonsController';
+import BodyLayout from '../../layouts/BodyLayout.astro';
+import SeasonRaceList from '../../components/calendar/SeasonRaceList.astro';
+
+export async function getStaticPaths() {
+  const seasons = await getAllSeasons();
+  return seasons.map((season: number) => ({
+    params: { season: season.toString() },
+    props: { season },
+  }));
+}
+
+const { season } = Astro.params;
+---
+
+<BaseLayout title="Full Wet" description={`Temporada ${season} de la Formula 1. Resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.`}>
+	<BodyLayout>
+    <SeasonRaceList season={season} />
+  </BodyLayout>
+</BaseLayout>

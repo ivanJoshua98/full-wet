@@ -31,10 +31,12 @@ export namespace models {
         position: number | null;
         points: number;
         fastestLap: string | null;
-        fastestLapTime: string | null;
-        fastestLapSpeed: string | null;
         driver: Driver;
         team: Team;
+        grid: number | null;
+        status: string | null;
+        laps: number | null;
+        time: string | null;
     }
 
     export interface Driver {

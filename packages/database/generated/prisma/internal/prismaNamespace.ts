@@ -1199,7 +1199,8 @@ export const SprintResultScalarFieldEnum = {
   points: 'points',
   grid: 'grid',
   status: 'status',
-  laps: 'laps'
+  laps: 'laps',
+  time: 'time'
 } as const
 
 export type SprintResultScalarFieldEnum = (typeof SprintResultScalarFieldEnum)[keyof typeof SprintResultScalarFieldEnum]
@@ -1215,7 +1216,8 @@ export const RaceResultScalarFieldEnum = {
   grid: 'grid',
   fastestLap: 'fastestLap',
   status: 'status',
-  laps: 'laps'
+  laps: 'laps',
+  time: 'time'
 } as const
 
 export type RaceResultScalarFieldEnum = (typeof RaceResultScalarFieldEnum)[keyof typeof RaceResultScalarFieldEnum]

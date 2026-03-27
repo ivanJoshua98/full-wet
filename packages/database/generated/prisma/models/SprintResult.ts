@@ -54,6 +54,7 @@ export type SprintResultMinAggregateOutputType = {
   grid: number | null
   status: string | null
   laps: number | null
+  time: string | null
 }
 
 export type SprintResultMaxAggregateOutputType = {
@@ -66,6 +67,7 @@ export type SprintResultMaxAggregateOutputType = {
   grid: number | null
   status: string | null
   laps: number | null
+  time: string | null
 }
 
 export type SprintResultCountAggregateOutputType = {
@@ -78,6 +80,7 @@ export type SprintResultCountAggregateOutputType = {
   grid: number
   status: number
   laps: number
+  time: number
   _all: number
 }
 
@@ -110,6 +113,7 @@ export type SprintResultMinAggregateInputType = {
   grid?: true
   status?: true
   laps?: true
+  time?: true
 }
 
 export type SprintResultMaxAggregateInputType = {
@@ -122,6 +126,7 @@ export type SprintResultMaxAggregateInputType = {
   grid?: true
   status?: true
   laps?: true
+  time?: true
 }
 
 export type SprintResultCountAggregateInputType = {
@@ -134,6 +139,7 @@ export type SprintResultCountAggregateInputType = {
   grid?: true
   status?: true
   laps?: true
+  time?: true
   _all?: true
 }
 
@@ -233,6 +239,7 @@ export type SprintResultGroupByOutputType = {
   grid: number | null
   status: string | null
   laps: number | null
+  time: string | null
   _count: SprintResultCountAggregateOutputType | null
   _avg: SprintResultAvgAggregateOutputType | null
   _sum: SprintResultSumAggregateOutputType | null
@@ -268,6 +275,7 @@ export type SprintResultWhereInput = {
   grid?: Prisma.IntNullableFilter<"SprintResult"> | number | null
   status?: Prisma.StringNullableFilter<"SprintResult"> | string | null
   laps?: Prisma.IntNullableFilter<"SprintResult"> | number | null
+  time?: Prisma.StringNullableFilter<"SprintResult"> | string | null
   race?: Prisma.XOR<Prisma.RaceScalarRelationFilter, Prisma.RaceWhereInput>
   driver?: Prisma.XOR<Prisma.DriverScalarRelationFilter, Prisma.DriverWhereInput>
   team?: Prisma.XOR<Prisma.TeamScalarRelationFilter, Prisma.TeamWhereInput>
@@ -283,6 +291,7 @@ export type SprintResultOrderByWithRelationInput = {
   grid?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   laps?: Prisma.SortOrderInput | Prisma.SortOrder
+  time?: Prisma.SortOrderInput | Prisma.SortOrder
   race?: Prisma.RaceOrderByWithRelationInput
   driver?: Prisma.DriverOrderByWithRelationInput
   team?: Prisma.TeamOrderByWithRelationInput
@@ -302,6 +311,7 @@ export type SprintResultWhereUniqueInput = Prisma.AtLeast<{
   grid?: Prisma.IntNullableFilter<"SprintResult"> | number | null
   status?: Prisma.StringNullableFilter<"SprintResult"> | string | null
   laps?: Prisma.IntNullableFilter<"SprintResult"> | number | null
+  time?: Prisma.StringNullableFilter<"SprintResult"> | string | null
   race?: Prisma.XOR<Prisma.RaceScalarRelationFilter, Prisma.RaceWhereInput>
   driver?: Prisma.XOR<Prisma.DriverScalarRelationFilter, Prisma.DriverWhereInput>
   team?: Prisma.XOR<Prisma.TeamScalarRelationFilter, Prisma.TeamWhereInput>
@@ -317,6 +327,7 @@ export type SprintResultOrderByWithAggregationInput = {
   grid?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   laps?: Prisma.SortOrderInput | Prisma.SortOrder
+  time?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.SprintResultCountOrderByAggregateInput
   _avg?: Prisma.SprintResultAvgOrderByAggregateInput
   _max?: Prisma.SprintResultMaxOrderByAggregateInput
@@ -337,6 +348,7 @@ export type SprintResultScalarWhereWithAggregatesInput = {
   grid?: Prisma.IntNullableWithAggregatesFilter<"SprintResult"> | number | null
   status?: Prisma.StringNullableWithAggregatesFilter<"SprintResult"> | string | null
   laps?: Prisma.IntNullableWithAggregatesFilter<"SprintResult"> | number | null
+  time?: Prisma.StringNullableWithAggregatesFilter<"SprintResult"> | string | null
 }
 
 export type SprintResultCreateInput = {
@@ -345,6 +357,7 @@ export type SprintResultCreateInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
   race: Prisma.RaceCreateNestedOneWithoutSprintResultsInput
   driver: Prisma.DriverCreateNestedOneWithoutSprintResultsInput
   team: Prisma.TeamCreateNestedOneWithoutSprintResultsInput
@@ -360,6 +373,7 @@ export type SprintResultUncheckedCreateInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type SprintResultUpdateInput = {
@@ -368,6 +382,7 @@ export type SprintResultUpdateInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   race?: Prisma.RaceUpdateOneRequiredWithoutSprintResultsNestedInput
   driver?: Prisma.DriverUpdateOneRequiredWithoutSprintResultsNestedInput
   team?: Prisma.TeamUpdateOneRequiredWithoutSprintResultsNestedInput
@@ -383,6 +398,7 @@ export type SprintResultUncheckedUpdateInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SprintResultCreateManyInput = {
@@ -395,6 +411,7 @@ export type SprintResultCreateManyInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type SprintResultUpdateManyMutationInput = {
@@ -403,6 +420,7 @@ export type SprintResultUpdateManyMutationInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SprintResultUncheckedUpdateManyInput = {
@@ -415,6 +433,7 @@ export type SprintResultUncheckedUpdateManyInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SprintResultListRelationFilter = {
@@ -442,6 +461,7 @@ export type SprintResultCountOrderByAggregateInput = {
   grid?: Prisma.SortOrder
   status?: Prisma.SortOrder
   laps?: Prisma.SortOrder
+  time?: Prisma.SortOrder
 }
 
 export type SprintResultAvgOrderByAggregateInput = {
@@ -463,6 +483,7 @@ export type SprintResultMaxOrderByAggregateInput = {
   grid?: Prisma.SortOrder
   status?: Prisma.SortOrder
   laps?: Prisma.SortOrder
+  time?: Prisma.SortOrder
 }
 
 export type SprintResultMinOrderByAggregateInput = {
@@ -475,6 +496,7 @@ export type SprintResultMinOrderByAggregateInput = {
   grid?: Prisma.SortOrder
   status?: Prisma.SortOrder
   laps?: Prisma.SortOrder
+  time?: Prisma.SortOrder
 }
 
 export type SprintResultSumOrderByAggregateInput = {
@@ -626,6 +648,7 @@ export type SprintResultCreateWithoutTeamInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
   race: Prisma.RaceCreateNestedOneWithoutSprintResultsInput
   driver: Prisma.DriverCreateNestedOneWithoutSprintResultsInput
 }
@@ -639,6 +662,7 @@ export type SprintResultUncheckedCreateWithoutTeamInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type SprintResultCreateOrConnectWithoutTeamInput = {
@@ -680,6 +704,7 @@ export type SprintResultScalarWhereInput = {
   grid?: Prisma.IntNullableFilter<"SprintResult"> | number | null
   status?: Prisma.StringNullableFilter<"SprintResult"> | string | null
   laps?: Prisma.IntNullableFilter<"SprintResult"> | number | null
+  time?: Prisma.StringNullableFilter<"SprintResult"> | string | null
 }
 
 export type SprintResultCreateWithoutDriverInput = {
@@ -688,6 +713,7 @@ export type SprintResultCreateWithoutDriverInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
   race: Prisma.RaceCreateNestedOneWithoutSprintResultsInput
   team: Prisma.TeamCreateNestedOneWithoutSprintResultsInput
 }
@@ -701,6 +727,7 @@ export type SprintResultUncheckedCreateWithoutDriverInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type SprintResultCreateOrConnectWithoutDriverInput = {
@@ -735,6 +762,7 @@ export type SprintResultCreateWithoutRaceInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
   driver: Prisma.DriverCreateNestedOneWithoutSprintResultsInput
   team: Prisma.TeamCreateNestedOneWithoutSprintResultsInput
 }
@@ -748,6 +776,7 @@ export type SprintResultUncheckedCreateWithoutRaceInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type SprintResultCreateOrConnectWithoutRaceInput = {
@@ -785,6 +814,7 @@ export type SprintResultCreateManyTeamInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type SprintResultUpdateWithoutTeamInput = {
@@ -793,6 +823,7 @@ export type SprintResultUpdateWithoutTeamInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   race?: Prisma.RaceUpdateOneRequiredWithoutSprintResultsNestedInput
   driver?: Prisma.DriverUpdateOneRequiredWithoutSprintResultsNestedInput
 }
@@ -806,6 +837,7 @@ export type SprintResultUncheckedUpdateWithoutTeamInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SprintResultUncheckedUpdateManyWithoutTeamInput = {
@@ -817,6 +849,7 @@ export type SprintResultUncheckedUpdateManyWithoutTeamInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SprintResultCreateManyDriverInput = {
@@ -828,6 +861,7 @@ export type SprintResultCreateManyDriverInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type SprintResultUpdateWithoutDriverInput = {
@@ -836,6 +870,7 @@ export type SprintResultUpdateWithoutDriverInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   race?: Prisma.RaceUpdateOneRequiredWithoutSprintResultsNestedInput
   team?: Prisma.TeamUpdateOneRequiredWithoutSprintResultsNestedInput
 }
@@ -849,6 +884,7 @@ export type SprintResultUncheckedUpdateWithoutDriverInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SprintResultUncheckedUpdateManyWithoutDriverInput = {
@@ -860,6 +896,7 @@ export type SprintResultUncheckedUpdateManyWithoutDriverInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SprintResultCreateManyRaceInput = {
@@ -871,6 +908,7 @@ export type SprintResultCreateManyRaceInput = {
   grid?: number | null
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type SprintResultUpdateWithoutRaceInput = {
@@ -879,6 +917,7 @@ export type SprintResultUpdateWithoutRaceInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   driver?: Prisma.DriverUpdateOneRequiredWithoutSprintResultsNestedInput
   team?: Prisma.TeamUpdateOneRequiredWithoutSprintResultsNestedInput
 }
@@ -892,6 +931,7 @@ export type SprintResultUncheckedUpdateWithoutRaceInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SprintResultUncheckedUpdateManyWithoutRaceInput = {
@@ -903,6 +943,7 @@ export type SprintResultUncheckedUpdateManyWithoutRaceInput = {
   grid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -917,6 +958,7 @@ export type SprintResultSelect<ExtArgs extends runtime.Types.Extensions.Internal
   grid?: boolean
   status?: boolean
   laps?: boolean
+  time?: boolean
   race?: boolean | Prisma.RaceDefaultArgs<ExtArgs>
   driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
@@ -932,6 +974,7 @@ export type SprintResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   grid?: boolean
   status?: boolean
   laps?: boolean
+  time?: boolean
   race?: boolean | Prisma.RaceDefaultArgs<ExtArgs>
   driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
@@ -947,6 +990,7 @@ export type SprintResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   grid?: boolean
   status?: boolean
   laps?: boolean
+  time?: boolean
   race?: boolean | Prisma.RaceDefaultArgs<ExtArgs>
   driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
@@ -962,9 +1006,10 @@ export type SprintResultSelectScalar = {
   grid?: boolean
   status?: boolean
   laps?: boolean
+  time?: boolean
 }
 
-export type SprintResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "raceId" | "driverId" | "teamId" | "position" | "points" | "grid" | "status" | "laps", ExtArgs["result"]["sprintResult"]>
+export type SprintResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "raceId" | "driverId" | "teamId" | "position" | "points" | "grid" | "status" | "laps" | "time", ExtArgs["result"]["sprintResult"]>
 export type SprintResultInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   race?: boolean | Prisma.RaceDefaultArgs<ExtArgs>
   driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
@@ -998,6 +1043,7 @@ export type $SprintResultPayload<ExtArgs extends runtime.Types.Extensions.Intern
     grid: number | null
     status: string | null
     laps: number | null
+    time: string | null
   }, ExtArgs["result"]["sprintResult"]>
   composites: {}
 }
@@ -1433,6 +1479,7 @@ export interface SprintResultFieldRefs {
   readonly grid: Prisma.FieldRef<"SprintResult", 'Int'>
   readonly status: Prisma.FieldRef<"SprintResult", 'String'>
   readonly laps: Prisma.FieldRef<"SprintResult", 'Int'>
+  readonly time: Prisma.FieldRef<"SprintResult", 'String'>
 }
     
 

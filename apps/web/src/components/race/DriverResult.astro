@@ -1,5 +1,7 @@
 ---
-const { result } = Astro.props;
+import { showTimeResult } from "../../utils/raceTimeFormatter";
+
+const { result, firstDriver } = Astro.props;
 ---
 
 <div class="flex flex-row gap-2 justify-between items-center p-2 rounded-xl transition-all duration-300 group hover:translate-x-1 hover:bg-white/[0.03] border border-transparent hover:border-white/10">
@@ -23,17 +25,21 @@ const { result } = Astro.props;
       {result.driver.name}
     </p>
     <!-- Bloque: Nombre de la escuderia + numero del piloto -->
-    <p class="text-xs font-medium tracking-wide text-balance mt-0.5 flex items-center gap-1 text-brand-muted">
+    <p class="text-xs font-medium tracking-wide items-baseline flex items-center gap-1 text-brand-muted">
       {result.team.name}. #{result.driver.number}
     </p>
   </div>
 
-  <!-- Bloque: Puntos ganados -->
-  <div class="w-fit flex justify-end items-center gap-2">
-    <span class="font-mono text-md md:text-lg font-bold tracking-tight text-slate-100">
+  <div class="w-fit flex justify-end items-end flex-col justify-end">
+    <!-- Bloque: Puntos ganados -->
+    <span class="flex font-mono text-md md:text-lg font-bold tracking-tight text-slate-100 items-baseline">
       {result.points}
+      <span class="text-brand-muted font-bold text-sm ml-1">Pts</span>
     </span>
-    <span class="text-brand-muted font-bold text-sm mt-1">Pts</span>
+    <!-- Bloque: Tiempo -->
+    <span class="text-xs font-medium tracking-wide flex items-end text-slate-100 whitespace-nowrap">
+      {showTimeResult(result, firstDriver)}
+    </span>
   </div>
 
 </div>

@@ -22,7 +22,7 @@ const table = await getRaceResults(raceId);
     {table.results.length > 0 ? (
       table.results.map((result: models.RaceResult) => { 
         return (
-          <DriverResult result={result} />
+          <DriverResult result={result} firstDriver={table.results[0]} />
         )
       })
     ) : (

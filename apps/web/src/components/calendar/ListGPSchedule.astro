@@ -1,10 +1,11 @@
 ---
-import { getNextRace } from '../../controllers/calendarController';
+import { getNextRace } from '../../controllers/raceController';
 import TimeSchedule from '../calendar/TimeSchedule.astro';
 import CalendarIcon from '../icons/CalendarIcon.astro';
 import WorldIcon from '../icons/WorldIcon.astro';
 
-const race = await getNextRace();
+const year = new Date().getFullYear();
+const race = await getNextRace(year);
 
 const sessionsUnsorted = [
   { name: 'Práctica Libre 1', date: race?.firstPractice },

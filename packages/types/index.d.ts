@@ -39,16 +39,20 @@ export namespace models {
 
     export interface Driver {
         id: string;
-        firstName: string;
-        lastName: string;
+        name: string;
         number: number | null;
-        nationality: string;
-        dateOfBirth: Date | null;
+        nationality: string | null;
+        teamId: string | null;
     }
 
     export interface Team {
         id: string;
         name: string;
         country: string;
+    }
+
+    export interface RaceResultTable {
+        race: Race;
+        results: RaceResult[];
     }
 }

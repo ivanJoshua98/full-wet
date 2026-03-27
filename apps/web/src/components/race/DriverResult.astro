@@ -1,0 +1,39 @@
+---
+const { result } = Astro.props;
+---
+
+<div class="flex flex-row gap-2 justify-between items-center p-2 rounded-xl transition-all duration-300 group hover:translate-x-1 hover:bg-white/[0.03] border border-transparent hover:border-white/10">
+
+  <!-- Bloque: Posición -->
+  <div class={`flex flex-col justify-center items-center border rounded-lg p-1 min-w-[40px] md:min-w-[50px] 
+  bg-brand-dark/50 ${
+    result.position === 1 ? 'text-brand-win border-brand-win' : 
+    result.position === 2 ? 'text-brand-second border-brand-second' : 
+    result.position === 3 ? 'text-brand-third border-brand-third' : 
+    'text-slate-200 border-white/10'
+  }`}>
+    <span class="font-mono font-blacks">
+      {result.position}
+    </span>
+  </div>
+
+  <!-- Bloque: Nombre del piloto -->
+  <div class="w-full flex flex-col ml-2">
+    <p class="font-black uppercase tracking-widest text-sm md:text-base text-balance leading-tight text-slate-200">
+      {result.driver.name}
+    </p>
+    <!-- Bloque: Nombre de la escuderia + numero del piloto -->
+    <p class="text-xs font-medium tracking-wide text-balance mt-0.5 flex items-center gap-1 text-brand-muted">
+      {result.team.name}. #{result.driver.number}
+    </p>
+  </div>
+
+  <!-- Bloque: Puntos ganados -->
+  <div class="w-fit flex justify-end items-center gap-2">
+    <span class="font-mono text-md md:text-lg font-bold tracking-tight text-slate-100">
+      {result.points}
+    </span>
+    <span class="text-brand-muted font-bold text-sm mt-1">Pts</span>
+  </div>
+
+</div>

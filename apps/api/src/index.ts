@@ -1,6 +1,6 @@
 import express from 'express';
 import { getAllSeasonsHandler } from './controllers/seasonsController.js';
-import { getNextRaceHandler, getRacesByYearHandler } from './controllers/raceController.js';
+import { getNextRaceHandler, getRacesByYearHandler, getAllRacesHandler } from './controllers/raceController.js';
 import { getRaceResultsHandler } from './controllers/raceResultController.js';
 
 const app = express();
@@ -14,6 +14,9 @@ app.get('/api/:year/races', getRacesByYearHandler);
 
 // Seasons Routes
 app.get('/api/seasons', getAllSeasonsHandler);
+
+// Race Routes
+app.get('/api/races', getAllRacesHandler);
 
 // Race results Routes
 app.get('/api/races/:raceId/results', getRaceResultsHandler);

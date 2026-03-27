@@ -24,3 +24,22 @@ export async function getNextRace(year: number) {
 
   return nextRace as models.Race;
 }
+
+export async function getAllRaces() {
+  const races = await prisma.race.findMany({
+    select: {
+      id: true,
+      seasonYear: true,
+    },
+    orderBy: { id: 'desc' },
+  });
+
+  const racesByYear: Record<number, number[]> = {};
+  for (const race of races) {
+    const yearRaces = racesByYear[race.seasonYear] || [];
+    yearRaces.push(race.id);
+    racesByYear[race.seasonYear] = yearRaces;
+  }
+
+  return racesByYear;
+}

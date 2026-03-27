@@ -1,4 +1,4 @@
-import { getNextRace, getRacesByYear } from '../services/raceService.js';
+import { getNextRace, getRacesByYear, getAllRaces } from '../services/raceService.js';
 import type { Request, Response } from 'express';
 
 export const getRacesByYearHandler = async (req: Request, res: Response) => {
@@ -50,6 +50,16 @@ export const getNextRaceHandler = async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Error fetching next race:', error);
     res.status(500).json({ error: 'Error interno del servidor al obtener la próxima carrera.' });
+  }
+};
+
+export const getAllRacesHandler = async (req: Request, res: Response) => {
+  try {
+    const races = await getAllRaces();
+    res.json(races);
+  } catch (error) {
+    console.error('Error fetching races:', error);
+    res.status(500).json({ error: 'Internal server error while fetching races.' });
   }
 };
 

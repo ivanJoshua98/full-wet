@@ -14,5 +14,10 @@ export async function getRaceResults(raceId: number) {
             position: 'asc',
         },
     });
-    return results as models.RaceResult[];
+    const race = await prisma.race.findUnique({
+        where: {
+            id: raceId,
+        },
+    });
+    return { race, results } as models.RaceResultTable;
 }

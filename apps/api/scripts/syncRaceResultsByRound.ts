@@ -36,7 +36,8 @@ async function syncRaceResultsByRound(year: number, round: number) {
           points: parseFloat(res.points),
           grid: parseInt(res.grid),
           status: res.status,
-          laps: parseInt(res.laps)
+          laps: parseInt(res.laps),
+          time: res.Time?.time || null,
         }
       });
       console.log(`ℹ️ El resultado de ${res.Driver.driverId} fue actualizado.`);
@@ -50,7 +51,8 @@ async function syncRaceResultsByRound(year: number, round: number) {
           points: parseFloat(res.points),
           grid: parseInt(res.grid),
           status: res.status,
-          laps: parseInt(res.laps)
+          laps: parseInt(res.laps),
+          time: res.Time?.time || null,
         }
       });
     }
@@ -58,6 +60,10 @@ async function syncRaceResultsByRound(year: number, round: number) {
   console.log(`✅ Clasificación de ${raceData.raceName} guardada con éxito.`);
 }
 
-syncRaceResultsByRound(2026, 2)
+const args = process.argv.slice(2) || [2026, 2];
+const year = parseInt(args[0]!);
+const round = parseInt(args[1]!);
+
+syncRaceResultsByRound(year, round)
   .catch(e => console.error(e))
   .finally(() => prisma.$disconnect());

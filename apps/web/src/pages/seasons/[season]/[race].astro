@@ -1,0 +1,32 @@
+---
+import RaceResult from "../../../components/race/RaceResult.astro";
+import { getAllRaces } from "../../../controllers/raceController";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BodyLayout from "../../../layouts/BodyLayout.astro";
+
+export async function getStaticPaths() {
+  const racesByYear = await getAllRaces();
+  
+  const paths = [];
+  for (const year in racesByYear) {
+    for (const raceId of racesByYear[year] || []) {
+      paths.push({
+        params: { 
+          season: year.toString(),
+          race: raceId.toString() 
+        },
+        props: { raceId },
+      });
+    }
+  }
+  return paths;
+}
+
+const { raceId } = Astro.props;
+---
+
+<BaseLayout title="Full Wet" description={`Resultados de los grandes premios de la Formula 1. Resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.`}>
+	<BodyLayout>
+    <RaceResult raceId={raceId} />
+  </BodyLayout>
+</BaseLayout>

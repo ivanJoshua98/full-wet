@@ -105,6 +105,7 @@ model SprintResult {
   grid       Int?
   status     String?  // Finished, DNF, etc.
   laps       Int?
+  time       String?  // Example: "1:12.345" or "+1 Lap"
 
   @@unique([raceId, driverId])
 }
@@ -122,7 +123,8 @@ model RaceResult {
   grid         Int?
   fastestLap   Boolean  @default(false)
   status       String?  // Finished, DNF, etc.
-  laps       Int?
+  laps         Int?
+  time         String?  // Example: "1:12.345" or "+1 Lap"
 
   @@unique([raceId, driverId])
 }

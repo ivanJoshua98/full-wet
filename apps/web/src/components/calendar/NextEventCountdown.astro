@@ -1,7 +1,8 @@
 ---
-import { getNextRace } from "../../controllers/calendarController";
+import { getNextRace } from "../../controllers/raceController";
 
-const nextRace = await getNextRace();
+const year = new Date().getFullYear();
+const nextRace = await getNextRace(year);
 ---
 
 <section class="relative overflow-hidden bg-wet-gradient border border-brand-card py-4 px-4 md:p-8 rounded-2xl my-5 group w-full md:w-5/6">

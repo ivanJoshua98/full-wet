@@ -55,6 +55,7 @@ export type RaceResultMinAggregateOutputType = {
   fastestLap: boolean | null
   status: string | null
   laps: number | null
+  time: string | null
 }
 
 export type RaceResultMaxAggregateOutputType = {
@@ -68,6 +69,7 @@ export type RaceResultMaxAggregateOutputType = {
   fastestLap: boolean | null
   status: string | null
   laps: number | null
+  time: string | null
 }
 
 export type RaceResultCountAggregateOutputType = {
@@ -81,6 +83,7 @@ export type RaceResultCountAggregateOutputType = {
   fastestLap: number
   status: number
   laps: number
+  time: number
   _all: number
 }
 
@@ -114,6 +117,7 @@ export type RaceResultMinAggregateInputType = {
   fastestLap?: true
   status?: true
   laps?: true
+  time?: true
 }
 
 export type RaceResultMaxAggregateInputType = {
@@ -127,6 +131,7 @@ export type RaceResultMaxAggregateInputType = {
   fastestLap?: true
   status?: true
   laps?: true
+  time?: true
 }
 
 export type RaceResultCountAggregateInputType = {
@@ -140,6 +145,7 @@ export type RaceResultCountAggregateInputType = {
   fastestLap?: true
   status?: true
   laps?: true
+  time?: true
   _all?: true
 }
 
@@ -240,6 +246,7 @@ export type RaceResultGroupByOutputType = {
   fastestLap: boolean
   status: string | null
   laps: number | null
+  time: string | null
   _count: RaceResultCountAggregateOutputType | null
   _avg: RaceResultAvgAggregateOutputType | null
   _sum: RaceResultSumAggregateOutputType | null
@@ -276,6 +283,7 @@ export type RaceResultWhereInput = {
   fastestLap?: Prisma.BoolFilter<"RaceResult"> | boolean
   status?: Prisma.StringNullableFilter<"RaceResult"> | string | null
   laps?: Prisma.IntNullableFilter<"RaceResult"> | number | null
+  time?: Prisma.StringNullableFilter<"RaceResult"> | string | null
   race?: Prisma.XOR<Prisma.RaceScalarRelationFilter, Prisma.RaceWhereInput>
   driver?: Prisma.XOR<Prisma.DriverScalarRelationFilter, Prisma.DriverWhereInput>
   team?: Prisma.XOR<Prisma.TeamScalarRelationFilter, Prisma.TeamWhereInput>
@@ -292,6 +300,7 @@ export type RaceResultOrderByWithRelationInput = {
   fastestLap?: Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   laps?: Prisma.SortOrderInput | Prisma.SortOrder
+  time?: Prisma.SortOrderInput | Prisma.SortOrder
   race?: Prisma.RaceOrderByWithRelationInput
   driver?: Prisma.DriverOrderByWithRelationInput
   team?: Prisma.TeamOrderByWithRelationInput
@@ -312,6 +321,7 @@ export type RaceResultWhereUniqueInput = Prisma.AtLeast<{
   fastestLap?: Prisma.BoolFilter<"RaceResult"> | boolean
   status?: Prisma.StringNullableFilter<"RaceResult"> | string | null
   laps?: Prisma.IntNullableFilter<"RaceResult"> | number | null
+  time?: Prisma.StringNullableFilter<"RaceResult"> | string | null
   race?: Prisma.XOR<Prisma.RaceScalarRelationFilter, Prisma.RaceWhereInput>
   driver?: Prisma.XOR<Prisma.DriverScalarRelationFilter, Prisma.DriverWhereInput>
   team?: Prisma.XOR<Prisma.TeamScalarRelationFilter, Prisma.TeamWhereInput>
@@ -328,6 +338,7 @@ export type RaceResultOrderByWithAggregationInput = {
   fastestLap?: Prisma.SortOrder
   status?: Prisma.SortOrderInput | Prisma.SortOrder
   laps?: Prisma.SortOrderInput | Prisma.SortOrder
+  time?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RaceResultCountOrderByAggregateInput
   _avg?: Prisma.RaceResultAvgOrderByAggregateInput
   _max?: Prisma.RaceResultMaxOrderByAggregateInput
@@ -349,6 +360,7 @@ export type RaceResultScalarWhereWithAggregatesInput = {
   fastestLap?: Prisma.BoolWithAggregatesFilter<"RaceResult"> | boolean
   status?: Prisma.StringNullableWithAggregatesFilter<"RaceResult"> | string | null
   laps?: Prisma.IntNullableWithAggregatesFilter<"RaceResult"> | number | null
+  time?: Prisma.StringNullableWithAggregatesFilter<"RaceResult"> | string | null
 }
 
 export type RaceResultCreateInput = {
@@ -358,6 +370,7 @@ export type RaceResultCreateInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
   race: Prisma.RaceCreateNestedOneWithoutResultsInput
   driver: Prisma.DriverCreateNestedOneWithoutResultsInput
   team: Prisma.TeamCreateNestedOneWithoutResultsInput
@@ -374,6 +387,7 @@ export type RaceResultUncheckedCreateInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type RaceResultUpdateInput = {
@@ -383,6 +397,7 @@ export type RaceResultUpdateInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   race?: Prisma.RaceUpdateOneRequiredWithoutResultsNestedInput
   driver?: Prisma.DriverUpdateOneRequiredWithoutResultsNestedInput
   team?: Prisma.TeamUpdateOneRequiredWithoutResultsNestedInput
@@ -399,6 +414,7 @@ export type RaceResultUncheckedUpdateInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RaceResultCreateManyInput = {
@@ -412,6 +428,7 @@ export type RaceResultCreateManyInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type RaceResultUpdateManyMutationInput = {
@@ -421,6 +438,7 @@ export type RaceResultUpdateManyMutationInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RaceResultUncheckedUpdateManyInput = {
@@ -434,6 +452,7 @@ export type RaceResultUncheckedUpdateManyInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RaceResultListRelationFilter = {
@@ -462,6 +481,7 @@ export type RaceResultCountOrderByAggregateInput = {
   fastestLap?: Prisma.SortOrder
   status?: Prisma.SortOrder
   laps?: Prisma.SortOrder
+  time?: Prisma.SortOrder
 }
 
 export type RaceResultAvgOrderByAggregateInput = {
@@ -484,6 +504,7 @@ export type RaceResultMaxOrderByAggregateInput = {
   fastestLap?: Prisma.SortOrder
   status?: Prisma.SortOrder
   laps?: Prisma.SortOrder
+  time?: Prisma.SortOrder
 }
 
 export type RaceResultMinOrderByAggregateInput = {
@@ -497,6 +518,7 @@ export type RaceResultMinOrderByAggregateInput = {
   fastestLap?: Prisma.SortOrder
   status?: Prisma.SortOrder
   laps?: Prisma.SortOrder
+  time?: Prisma.SortOrder
 }
 
 export type RaceResultSumOrderByAggregateInput = {
@@ -645,6 +667,7 @@ export type RaceResultCreateWithoutTeamInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
   race: Prisma.RaceCreateNestedOneWithoutResultsInput
   driver: Prisma.DriverCreateNestedOneWithoutResultsInput
 }
@@ -659,6 +682,7 @@ export type RaceResultUncheckedCreateWithoutTeamInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type RaceResultCreateOrConnectWithoutTeamInput = {
@@ -701,6 +725,7 @@ export type RaceResultScalarWhereInput = {
   fastestLap?: Prisma.BoolFilter<"RaceResult"> | boolean
   status?: Prisma.StringNullableFilter<"RaceResult"> | string | null
   laps?: Prisma.IntNullableFilter<"RaceResult"> | number | null
+  time?: Prisma.StringNullableFilter<"RaceResult"> | string | null
 }
 
 export type RaceResultCreateWithoutDriverInput = {
@@ -710,6 +735,7 @@ export type RaceResultCreateWithoutDriverInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
   race: Prisma.RaceCreateNestedOneWithoutResultsInput
   team: Prisma.TeamCreateNestedOneWithoutResultsInput
 }
@@ -724,6 +750,7 @@ export type RaceResultUncheckedCreateWithoutDriverInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type RaceResultCreateOrConnectWithoutDriverInput = {
@@ -759,6 +786,7 @@ export type RaceResultCreateWithoutRaceInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
   driver: Prisma.DriverCreateNestedOneWithoutResultsInput
   team: Prisma.TeamCreateNestedOneWithoutResultsInput
 }
@@ -773,6 +801,7 @@ export type RaceResultUncheckedCreateWithoutRaceInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type RaceResultCreateOrConnectWithoutRaceInput = {
@@ -811,6 +840,7 @@ export type RaceResultCreateManyTeamInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type RaceResultUpdateWithoutTeamInput = {
@@ -820,6 +850,7 @@ export type RaceResultUpdateWithoutTeamInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   race?: Prisma.RaceUpdateOneRequiredWithoutResultsNestedInput
   driver?: Prisma.DriverUpdateOneRequiredWithoutResultsNestedInput
 }
@@ -834,6 +865,7 @@ export type RaceResultUncheckedUpdateWithoutTeamInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RaceResultUncheckedUpdateManyWithoutTeamInput = {
@@ -846,6 +878,7 @@ export type RaceResultUncheckedUpdateManyWithoutTeamInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RaceResultCreateManyDriverInput = {
@@ -858,6 +891,7 @@ export type RaceResultCreateManyDriverInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type RaceResultUpdateWithoutDriverInput = {
@@ -867,6 +901,7 @@ export type RaceResultUpdateWithoutDriverInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   race?: Prisma.RaceUpdateOneRequiredWithoutResultsNestedInput
   team?: Prisma.TeamUpdateOneRequiredWithoutResultsNestedInput
 }
@@ -881,6 +916,7 @@ export type RaceResultUncheckedUpdateWithoutDriverInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RaceResultUncheckedUpdateManyWithoutDriverInput = {
@@ -893,6 +929,7 @@ export type RaceResultUncheckedUpdateManyWithoutDriverInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RaceResultCreateManyRaceInput = {
@@ -905,6 +942,7 @@ export type RaceResultCreateManyRaceInput = {
   fastestLap?: boolean
   status?: string | null
   laps?: number | null
+  time?: string | null
 }
 
 export type RaceResultUpdateWithoutRaceInput = {
@@ -914,6 +952,7 @@ export type RaceResultUpdateWithoutRaceInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   driver?: Prisma.DriverUpdateOneRequiredWithoutResultsNestedInput
   team?: Prisma.TeamUpdateOneRequiredWithoutResultsNestedInput
 }
@@ -928,6 +967,7 @@ export type RaceResultUncheckedUpdateWithoutRaceInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RaceResultUncheckedUpdateManyWithoutRaceInput = {
@@ -940,6 +980,7 @@ export type RaceResultUncheckedUpdateManyWithoutRaceInput = {
   fastestLap?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   laps?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  time?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -955,6 +996,7 @@ export type RaceResultSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   fastestLap?: boolean
   status?: boolean
   laps?: boolean
+  time?: boolean
   race?: boolean | Prisma.RaceDefaultArgs<ExtArgs>
   driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
@@ -971,6 +1013,7 @@ export type RaceResultSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   fastestLap?: boolean
   status?: boolean
   laps?: boolean
+  time?: boolean
   race?: boolean | Prisma.RaceDefaultArgs<ExtArgs>
   driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
@@ -987,6 +1030,7 @@ export type RaceResultSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   fastestLap?: boolean
   status?: boolean
   laps?: boolean
+  time?: boolean
   race?: boolean | Prisma.RaceDefaultArgs<ExtArgs>
   driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
   team?: boolean | Prisma.TeamDefaultArgs<ExtArgs>
@@ -1003,9 +1047,10 @@ export type RaceResultSelectScalar = {
   fastestLap?: boolean
   status?: boolean
   laps?: boolean
+  time?: boolean
 }
 
-export type RaceResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "raceId" | "driverId" | "teamId" | "position" | "points" | "grid" | "fastestLap" | "status" | "laps", ExtArgs["result"]["raceResult"]>
+export type RaceResultOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "raceId" | "driverId" | "teamId" | "position" | "points" | "grid" | "fastestLap" | "status" | "laps" | "time", ExtArgs["result"]["raceResult"]>
 export type RaceResultInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   race?: boolean | Prisma.RaceDefaultArgs<ExtArgs>
   driver?: boolean | Prisma.DriverDefaultArgs<ExtArgs>
@@ -1040,6 +1085,7 @@ export type $RaceResultPayload<ExtArgs extends runtime.Types.Extensions.Internal
     fastestLap: boolean
     status: string | null
     laps: number | null
+    time: string | null
   }, ExtArgs["result"]["raceResult"]>
   composites: {}
 }
@@ -1476,6 +1522,7 @@ export interface RaceResultFieldRefs {
   readonly fastestLap: Prisma.FieldRef<"RaceResult", 'Boolean'>
   readonly status: Prisma.FieldRef<"RaceResult", 'String'>
   readonly laps: Prisma.FieldRef<"RaceResult", 'Int'>
+  readonly time: Prisma.FieldRef<"RaceResult", 'String'>
 }
     
 

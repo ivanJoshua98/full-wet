@@ -3,11 +3,11 @@ import CalendarIcon from "../icons/CalendarIcon.astro";
 import WorldIcon from "../icons/WorldIcon.astro";
 import { type models } from "types";
 import RaceDetails from "./RaceDetails.astro";
-import { getCalendarByYear } from "../../controllers/calendarController";
+import { getRacesByYear } from "../../controllers/raceController";
 
 const { season } = Astro.props;
 
-const races = await getCalendarByYear(season);
+const races = await getRacesByYear(season);
 let nextRace = null;
 
 if (Number(season) === new Date().getFullYear()) {

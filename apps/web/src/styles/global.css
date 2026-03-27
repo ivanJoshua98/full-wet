@@ -8,6 +8,8 @@
   --color-brand-accent: #00D1FF;  /* Azul Cian (Neumático Full Wet / Lluvia) */
   --color-brand-muted: #64748B;   /* Texto secundario */
   --color-brand-win: #FFD700;     /* Dorado para el ganador / Pole */
+  --color-brand-second: #C0C0C0;  /* Plata para el segundo lugar */
+  --color-brand-third: #CD7F32;   /* Bronce para el tercer lugar */
 
   /* Colores de los equipos principales */
   --color-f1-redbull: #0600EF;

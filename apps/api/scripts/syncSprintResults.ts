@@ -40,7 +40,8 @@ async function syncSprintResults(year: number) {
             points: parseFloat(res.points),
             grid: parseInt(res.grid),
             status: res.status,
-            laps: parseInt(res.laps)
+            laps: parseInt(res.laps),
+            time: res.Time?.time || null,
           }
         });
       } else {
@@ -53,7 +54,8 @@ async function syncSprintResults(year: number) {
             points: parseFloat(res.points),
             grid: parseInt(res.grid),
             status: res.status,
-            laps: parseInt(res.laps)
+            laps: parseInt(res.laps),
+            time: res.Time?.time || null,
           }
         });
       }
@@ -62,6 +64,9 @@ async function syncSprintResults(year: number) {
   }
 }
 
-syncSprintResults(2026)
+const args = process.argv.slice(2) || [2026];
+const year = parseInt(args[0]!);
+
+syncSprintResults(year)
   .catch(e => console.error(e))
   .finally(() => prisma.$disconnect());

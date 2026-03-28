@@ -1,11 +1,9 @@
 ---
-import { getNextRace } from '../../controllers/raceController';
 import TimeSchedule from '../calendar/TimeSchedule.astro';
 import CalendarIcon from '../icons/CalendarIcon.astro';
 import WorldIcon from '../icons/WorldIcon.astro';
 
-const year = new Date().getFullYear();
-const race = await getNextRace(year);
+const { race } = Astro.props;
 
 const sessionsUnsorted = [
   { name: 'Práctica Libre 1', date: race?.firstPractice },

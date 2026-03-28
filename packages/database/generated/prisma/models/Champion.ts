@@ -178,7 +178,7 @@ export type ChampionGroupByOutputType = {
   _max: ChampionMaxAggregateOutputType | null
 }
 
-type GetChampionGroupByPayload<T extends ChampionGroupByArgs> = Prisma.PrismaPromise<
+export type GetChampionGroupByPayload<T extends ChampionGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<ChampionGroupByOutputType, T['by']> &
       {

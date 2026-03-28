@@ -57,4 +57,25 @@ export namespace models {
         race: Race;
         results: RaceResult[];
     }
+
+    export interface DriverStanding {
+        id: string;
+        seasonYear: number;
+        driverId: string;
+        position: number;
+        points: number;
+        wins: number;
+        driver: Driver;
+        teamName: string;
+    }
+
+    export interface ConstructorStanding {
+        id: string;
+        seasonYear: number;
+        teamId: string;
+        position: number;
+        points: number;
+        wins: number;
+        team: Team;
+    }
 }

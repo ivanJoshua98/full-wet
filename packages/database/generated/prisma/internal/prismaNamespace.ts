@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.5.0
- * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
+ * Prisma Client JS version: 7.6.0
+ * Query Engine version: 75cbdc1eb7150937890ad5465d861175c6624711
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.5.0",
-  engine: "280c870be64f457428992c43c1f6d557fab6e29e"
+  client: "7.6.0",
+  engine: "75cbdc1eb7150937890ad5465d861175c6624711"
 }
 
 /**
@@ -392,7 +392,9 @@ export const ModelName = {
   QualifyingResult: 'QualifyingResult',
   SprintResult: 'SprintResult',
   RaceResult: 'RaceResult',
-  Champion: 'Champion'
+  Champion: 'Champion',
+  DriverStanding: 'DriverStanding',
+  ConstructorStanding: 'ConstructorStanding'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -408,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "season" | "circuit" | "team" | "driver" | "race" | "qualifyingResult" | "sprintResult" | "raceResult" | "champion"
+    modelProps: "season" | "circuit" | "team" | "driver" | "race" | "qualifyingResult" | "sprintResult" | "raceResult" | "champion" | "driverStanding" | "constructorStanding"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1078,6 +1080,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DriverStanding: {
+      payload: Prisma.$DriverStandingPayload<ExtArgs>
+      fields: Prisma.DriverStandingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DriverStandingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DriverStandingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload>
+        }
+        findFirst: {
+          args: Prisma.DriverStandingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DriverStandingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload>
+        }
+        findMany: {
+          args: Prisma.DriverStandingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload>[]
+        }
+        create: {
+          args: Prisma.DriverStandingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload>
+        }
+        createMany: {
+          args: Prisma.DriverStandingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DriverStandingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload>[]
+        }
+        delete: {
+          args: Prisma.DriverStandingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload>
+        }
+        update: {
+          args: Prisma.DriverStandingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload>
+        }
+        deleteMany: {
+          args: Prisma.DriverStandingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DriverStandingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DriverStandingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload>[]
+        }
+        upsert: {
+          args: Prisma.DriverStandingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DriverStandingPayload>
+        }
+        aggregate: {
+          args: Prisma.DriverStandingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDriverStanding>
+        }
+        groupBy: {
+          args: Prisma.DriverStandingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DriverStandingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DriverStandingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DriverStandingCountAggregateOutputType> | number
+        }
+      }
+    }
+    ConstructorStanding: {
+      payload: Prisma.$ConstructorStandingPayload<ExtArgs>
+      fields: Prisma.ConstructorStandingFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ConstructorStandingFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ConstructorStandingFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload>
+        }
+        findFirst: {
+          args: Prisma.ConstructorStandingFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ConstructorStandingFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload>
+        }
+        findMany: {
+          args: Prisma.ConstructorStandingFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload>[]
+        }
+        create: {
+          args: Prisma.ConstructorStandingCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload>
+        }
+        createMany: {
+          args: Prisma.ConstructorStandingCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ConstructorStandingCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload>[]
+        }
+        delete: {
+          args: Prisma.ConstructorStandingDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload>
+        }
+        update: {
+          args: Prisma.ConstructorStandingUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload>
+        }
+        deleteMany: {
+          args: Prisma.ConstructorStandingDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ConstructorStandingUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ConstructorStandingUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload>[]
+        }
+        upsert: {
+          args: Prisma.ConstructorStandingUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConstructorStandingPayload>
+        }
+        aggregate: {
+          args: Prisma.ConstructorStandingAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateConstructorStanding>
+        }
+        groupBy: {
+          args: Prisma.ConstructorStandingGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConstructorStandingGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ConstructorStandingCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConstructorStandingCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1230,6 +1380,31 @@ export const ChampionScalarFieldEnum = {
 } as const
 
 export type ChampionScalarFieldEnum = (typeof ChampionScalarFieldEnum)[keyof typeof ChampionScalarFieldEnum]
+
+
+export const DriverStandingScalarFieldEnum = {
+  id: 'id',
+  seasonYear: 'seasonYear',
+  driverId: 'driverId',
+  position: 'position',
+  points: 'points',
+  wins: 'wins',
+  teamName: 'teamName'
+} as const
+
+export type DriverStandingScalarFieldEnum = (typeof DriverStandingScalarFieldEnum)[keyof typeof DriverStandingScalarFieldEnum]
+
+
+export const ConstructorStandingScalarFieldEnum = {
+  id: 'id',
+  seasonYear: 'seasonYear',
+  teamId: 'teamId',
+  position: 'position',
+  points: 'points',
+  wins: 'wins'
+} as const
+
+export type ConstructorStandingScalarFieldEnum = (typeof ConstructorStandingScalarFieldEnum)[keyof typeof ConstructorStandingScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1428,6 +1603,8 @@ export type GlobalOmitConfig = {
   sprintResult?: Prisma.SprintResultOmit
   raceResult?: Prisma.RaceResultOmit
   champion?: Prisma.ChampionOmit
+  driverStanding?: Prisma.DriverStandingOmit
+  constructorStanding?: Prisma.ConstructorStandingOmit
 }
 
 /* Types for Logging */

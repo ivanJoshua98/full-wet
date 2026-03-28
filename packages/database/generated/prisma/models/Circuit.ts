@@ -199,7 +199,7 @@ export type CircuitGroupByOutputType = {
   _max: CircuitMaxAggregateOutputType | null
 }
 
-type GetCircuitGroupByPayload<T extends CircuitGroupByArgs> = Prisma.PrismaPromise<
+export type GetCircuitGroupByPayload<T extends CircuitGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<CircuitGroupByOutputType, T['by']> &
       {

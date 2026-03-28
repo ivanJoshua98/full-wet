@@ -59,7 +59,9 @@ export const ModelName = {
   QualifyingResult: 'QualifyingResult',
   SprintResult: 'SprintResult',
   RaceResult: 'RaceResult',
-  Champion: 'Champion'
+  Champion: 'Champion',
+  DriverStanding: 'DriverStanding',
+  ConstructorStanding: 'ConstructorStanding'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -191,6 +193,31 @@ export const ChampionScalarFieldEnum = {
 } as const
 
 export type ChampionScalarFieldEnum = (typeof ChampionScalarFieldEnum)[keyof typeof ChampionScalarFieldEnum]
+
+
+export const DriverStandingScalarFieldEnum = {
+  id: 'id',
+  seasonYear: 'seasonYear',
+  driverId: 'driverId',
+  position: 'position',
+  points: 'points',
+  wins: 'wins',
+  teamName: 'teamName'
+} as const
+
+export type DriverStandingScalarFieldEnum = (typeof DriverStandingScalarFieldEnum)[keyof typeof DriverStandingScalarFieldEnum]
+
+
+export const ConstructorStandingScalarFieldEnum = {
+  id: 'id',
+  seasonYear: 'seasonYear',
+  teamId: 'teamId',
+  position: 'position',
+  points: 'points',
+  wins: 'wins'
+} as const
+
+export type ConstructorStandingScalarFieldEnum = (typeof ConstructorStandingScalarFieldEnum)[keyof typeof ConstructorStandingScalarFieldEnum]
 
 
 export const SortOrder = {

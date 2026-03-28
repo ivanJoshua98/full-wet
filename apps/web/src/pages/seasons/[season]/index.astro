@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import { getAllSeasons } from '../../../controllers/seasonsController';
+import { getPastSeasons } from '../../../controllers/seasonsController';
 import BodyLayout from '../../../layouts/BodyLayout.astro';
 import SeasonRaceList from '../../../components/calendar/SeasonRaceList.astro';
 import DriverStandingsList from '../../../components/championship/DriverStandingsList.astro';
@@ -8,7 +8,7 @@ import ConstructorStandingsList from '../../../components/championship/Construct
 import ChampionshipsSectionLayout from '../../../layouts/ChampionshipsSectionLayout.astro';
 
 export async function getStaticPaths() {
-  const seasons = await getAllSeasons();
+  const seasons = await getPastSeasons();
   return seasons.map((season: number) => ({
     params: { season: season.toString() },
     props: { season },

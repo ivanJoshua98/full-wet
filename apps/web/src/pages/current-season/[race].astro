@@ -1,0 +1,15 @@
+---
+export const prerender = false;
+
+import RaceResult from "../../components/race/RaceResult.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BodyLayout from "../../layouts/BodyLayout.astro";
+
+const raceId = Astro.params.race
+---
+
+<BaseLayout title="Full Wet" description={`Resultados de los grandes premios de la Formula 1. Resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.`}>
+	<BodyLayout>
+    <RaceResult raceId={raceId} />
+  </BodyLayout>
+</BaseLayout>

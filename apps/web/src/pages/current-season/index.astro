@@ -1,0 +1,22 @@
+---
+export const prerender = false;
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BodyLayout from '../../layouts/BodyLayout.astro';
+import SeasonRaceList from '../../components/calendar/SeasonRaceList.astro';
+import ConstructorStandingsList from '../../components/championship/ConstructorStandingsList.astro';
+import DriverStandingsList from '../../components/championship/DriverStandingsList.astro';
+import ChampionshipsSectionLayout from '../../layouts/ChampionshipsSectionLayout.astro';
+
+const season = new Date().getFullYear();
+---
+
+<BaseLayout title="Full Wet" description={`Temporada ${season} de la Formula 1. Resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.`}>
+	<BodyLayout>
+    <SeasonRaceList season={season} />
+    <ChampionshipsSectionLayout>
+      <DriverStandingsList season={season} />
+      <ConstructorStandingsList season={season} />
+    </ChampionshipsSectionLayout>
+  </BodyLayout>
+</BaseLayout>

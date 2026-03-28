@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { getAllSeasons } from '../../controllers/seasonsController';
+import { getPastSeasons } from '../../controllers/seasonsController';
 import BodyLayout from '../../layouts/BodyLayout.astro';
 import CalendarIcon from '../../components/icons/CalendarIcon.astro';
 
-const seasons = await getAllSeasons();
+const seasons = await getPastSeasons();
 ---
 
 <BaseLayout title="Full Wet" description="Formula 1 en vivo. Resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.">

@@ -2,10 +2,11 @@
 import { getMonthName, getDayNumber, getTime } from "../../utils/dateFormatter";
 import ClockIcon from "../icons/ClockIcon.astro";
 
+const currentSeason = new Date().getFullYear();
 const { isNextRace = false, race } = Astro.props;
 ---
 
-<a href={`/seasons/${race.seasonYear}/${race.id}`}>
+<a href={race.seasonYear === currentSeason ? `/current-season/${race.id}` : `/seasons/${race.seasonYear}/${race.id}`}>
   <div class={`flex flex-row gap-2 justify-between items-center p-2 rounded-xl transition-all duration-300 group hover:translate-x-1 ${
     isNextRace 
       ? 'bg-gradient-to-r from-brand-accent/10 to-transparent border border-brand-accent/30 ring-1 ring-brand-accent/20 mt-4 shadow-[0_0_15px_rgba(0,209,255,0.05)]' 

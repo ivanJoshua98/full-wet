@@ -2,7 +2,7 @@
 import type { models } from "types";
 import { getDriverStandings } from "../../controllers/championshipController";
 import CalendarIcon from "../icons/CalendarIcon.astro";
-import DriverStandingDetails from "./driverStandingDetails.astro";
+import DriverStandingDetails from "./DriverStandingDetails.astro";
 
 const { season } = Astro.props;
 const driverStandings = await getDriverStandings(season);

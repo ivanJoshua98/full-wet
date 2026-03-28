@@ -3,7 +3,9 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { getAllSeasons } from '../../../controllers/seasonsController';
 import BodyLayout from '../../../layouts/BodyLayout.astro';
 import SeasonRaceList from '../../../components/calendar/SeasonRaceList.astro';
-import DriverStandingsList from '../../../components/championship/driverStandingsList.astro';
+import DriverStandingsList from '../../../components/championship/DriverStandingsList.astro';
+import ConstructorStandingsList from '../../../components/championship/ConstructorStandingsList.astro';
+import ChampionshipsSectionLayout from '../../../layouts/ChampionshipsSectionLayout.astro';
 
 export async function getStaticPaths() {
   const seasons = await getAllSeasons();
@@ -19,6 +21,9 @@ const { season } = Astro.params;
 <BaseLayout title="Full Wet" description={`Temporada ${season} de la Formula 1. Resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.`}>
 	<BodyLayout>
     <SeasonRaceList season={season} />
-    <DriverStandingsList season={season} />
+    <ChampionshipsSectionLayout>
+      <DriverStandingsList season={season} />
+      <ConstructorStandingsList season={season} />
+    </ChampionshipsSectionLayout>
   </BodyLayout>
 </BaseLayout>

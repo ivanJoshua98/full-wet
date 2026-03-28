@@ -16,8 +16,8 @@ if (Number(season) === new Date().getFullYear()) {
   nextRace = races.find((race: models.Race) => new Date(race.date as any).getTime() >= now);
 }
 ---
-
-<div class="bg-brand-card border border-white/5 rounded-2xl overflow-hidden py-4 px-1 md:p-8 my-5 w-full md:w-5/6 h-fit">
+<div class="w-full px-0 md:px-4">
+<div class="bg-brand-card border border-white/5 rounded-2xl overflow-hidden py-4 px-1 md:p-2 my-4 md:my-2 w-full h-fit season-race-list-container">
   <!-- Cabecera de la tabla -->
   <div class="bg-gradient-to-r from-brand-dark to-brand-card p-4 border-b border-white/5">
     <div class="flex items-center gap-3">
@@ -32,11 +32,13 @@ if (Number(season) === new Date().getFullYear()) {
   <!-- Contenedor del cronograma de eventos -->
   <div class="p-1 md:p-2 space-y-2">
     {races.length > 0 ? (
-      races.map((race: models.Race) => { 
+      races.map((race: models.Race, index: number) => { 
         // Se marca la próxima carrera para destacarla
         const isNextRace = race.name === nextRace?.name;
         return (
-          <RaceDetails isNextRace={isNextRace} race={race} />
+          <div class={`race-item ${index >= 3 ? 'hidden' : ''}`}>
+            <RaceDetails isNextRace={isNextRace} race={race} />
+          </div>
         )
       })
     ) : (
@@ -45,5 +47,61 @@ if (Number(season) === new Date().getFullYear()) {
         <p class="text-brand-muted text-lg font-medium">No hay información de sesiones programadas.</p>
       </div>
     )}
+    {races.length > 3 && (
+      <div class="flex justify-center mt-4">
+        <button class="expand-season-race-list-btn bg-brand-accent/10 hover:bg-brand-accent/20 text-brand-accent font-semibold py-2.5 px-6 rounded-full transition-all duration-300 shadow hover:shadow-brand-accent/20">
+          Ver tabla completa
+        </button>
+      </div>
+    )}
   </div>
 </div>
+</div>
+
+<script>
+  const setupStandingsToggle = () => {
+    const containers = document.querySelectorAll('.season-race-list-container');
+    
+    containers.forEach(container => {
+      const btn = container.querySelector('.expand-season-race-list-btn');
+      const standingItems = container.querySelectorAll('.race-item');
+      
+      if (btn) {
+        // Clonar botón para remover event listeners anteriores si se recargase
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode?.replaceChild(newBtn, btn);
+        
+        let isExpanded = false;
+        
+        newBtn.addEventListener('click', () => {
+          isExpanded = !isExpanded;
+          
+          standingItems.forEach((item, index) => {
+            if (index >= 3) {
+              if (isExpanded) {
+                item.classList.remove('hidden');
+                // Efecto de aparición simple
+                item.animate([
+                  { opacity: 0, transform: 'translateY(-10px)' },
+                  { opacity: 1, transform: 'translateY(0)' }
+                ], {
+                  duration: 250,
+                  easing: 'ease-out',
+                  fill: 'forwards'
+                });
+              } else {
+                item.classList.add('hidden');
+              }
+            }
+          });
+          
+          newBtn.textContent = isExpanded ? 'Ocultar tabla' : 'Ver tabla completa';
+        });
+      }
+    });
+  };
+
+  setupStandingsToggle();
+  // Compatible con ViewTransitions de Astro
+  document.addEventListener('astro:page-load', setupStandingsToggle);
+</script>

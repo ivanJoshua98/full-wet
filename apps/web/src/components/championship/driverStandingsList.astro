@@ -8,20 +8,24 @@ const { season } = Astro.props;
 const driverStandings = await getDriverStandings(season);
 ---
 
-<div class="bg-brand-card border border-white/5 rounded-2xl overflow-hidden py-4 px-1 md:p-8 my-5 w-full md:w-5/6 h-fit">
+<div 
+  id={`driver-standings-${season}`}
+  class="bg-brand-card border border-white/5 rounded-2xl overflow-hidden py-4 px-1 md:px-2 my-4 md:my-2 w-full md:w-5/6 h-fit driver-standings-container">
   <!-- Cabecera de la tabla -->
   <div class="bg-gradient-to-r from-brand-dark to-brand-card p-4 border-b border-white/5">
     <div class="flex items-center gap-3">
       <div class="w-1.5 h-6 bg-brand-accent rounded-full shadow-[0_0_8px_#00D1FF]"></div>
-      <h2 class="font-black text-white tracking-wide uppercase">Campeonato de pilotos {driverStandings[0].seasonYear || '---'}</h2>
+      <h2 class="font-black text-white tracking-wide uppercase">Campeonato de pilotos {driverStandings.length > 0 ? driverStandings[0].seasonYear : season || '---'}</h2>
     </div>
   </div>
-  <!-- Contenedor del cronograma de eventos -->
+  <!-- Contenedor de la tabla de posiciones -->
   <div class="p-1 md:p-2 space-y-2">
     {driverStandings.length > 0 ? (
-      driverStandings.map((driverStanding: models.DriverStanding) => { 
+      driverStandings.map((driverStanding: models.DriverStanding, index: number) => { 
         return (
-          <DriverStandingDetails driverStanding={driverStanding} />
+          <div class={`driver-standing-item ${index >= 3 ? 'hidden' : ''}`}>
+             <DriverStandingDetails driverStanding={driverStanding} />
+          </div>
         )
       })
     ) : (
@@ -30,5 +34,61 @@ const driverStandings = await getDriverStandings(season);
         <p class="text-brand-muted text-lg font-medium">No hay información del campeonato.</p>
       </div>
     )}
+
+    {driverStandings.length > 3 && (
+      <div class="flex justify-center mt-4">
+        <button class="expand-driver-standings-btn bg-brand-accent/10 hover:bg-brand-accent/20 text-brand-accent font-semibold py-2.5 px-6 rounded-full transition-all duration-300 shadow hover:shadow-brand-accent/20">
+          Ver tabla completa
+        </button>
+      </div>
+    )}
   </div>
 </div>
+
+<script>
+  const setupStandingsToggle = () => {
+    const containers = document.querySelectorAll('.driver-standings-container');
+    
+    containers.forEach(container => {
+      const btn = container.querySelector('.expand-driver-standings-btn');
+      const standingItems = container.querySelectorAll('.driver-standing-item');
+      
+      if (btn) {
+        // Clonar botón para remover event listeners anteriores si se recargase
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode?.replaceChild(newBtn, btn);
+        
+        let isExpanded = false;
+        
+        newBtn.addEventListener('click', () => {
+          isExpanded = !isExpanded;
+          
+          standingItems.forEach((item, index) => {
+            if (index >= 3) {
+              if (isExpanded) {
+                item.classList.remove('hidden');
+                // Efecto de aparición simple
+                item.animate([
+                  { opacity: 0, transform: 'translateY(-10px)' },
+                  { opacity: 1, transform: 'translateY(0)' }
+                ], {
+                  duration: 250,
+                  easing: 'ease-out',
+                  fill: 'forwards'
+                });
+              } else {
+                item.classList.add('hidden');
+              }
+            }
+          });
+          
+          newBtn.textContent = isExpanded ? 'Ocultar tabla' : 'Ver tabla completa';
+        });
+      }
+    });
+  };
+
+  setupStandingsToggle();
+  // Compatible con ViewTransitions de Astro
+  document.addEventListener('astro:page-load', setupStandingsToggle);
+</script>

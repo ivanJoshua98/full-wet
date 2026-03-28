@@ -20,18 +20,13 @@ const year = new Date().getFullYear();
         </a>
       </li>
       <li>
-        <a href={`/season/${year}/drivers`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
-          Campeonato de pilotos
+        <a href={`/seasons/${year}#driver-standings-${year}`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
+          Campeonato de pilotos {year}
         </a>
       </li>
       <li>
-        <a href={`/season/${year}/constructors`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
-          Campeonato de constructores
-        </a>
-      </li>
-      <li>
-        <a href={`/season/${year}/teams`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
-          Escuderías
+        <a href={`/seasons/${year}#constructor-standings-${year}`} class="flex items-center px-2 py-3 text-base rounded-lg hover:bg-slate-800 transition-colors">
+          Campeonato de constructores {year}
         </a>
       </li>
       <li>

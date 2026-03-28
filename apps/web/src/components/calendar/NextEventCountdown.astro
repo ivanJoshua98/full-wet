@@ -26,19 +26,19 @@ const { nextRace } = Astro.props;
       <div class="flex flex-wrap justify-center gap-3 md:gap-4 text-center" id="countdown" data-date={nextRace?.date}>
         <!-- Días -->
         <div class="flex flex-col justify-center items-center bg-brand-dark/60 backdrop-blur-md border border-brand-card p-4 md:p-5 rounded-xl min-w-[80px] md:min-w-[110px] shadow-inner transition-transform hover:-translate-y-1 hover:border-brand-accent/30 duration-300">
-          <span id="days" class="font-mono text-lg md:text-2xl font-bold text-white mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">00</span>
+          <span id="days" class="skeleton font-mono text-lg md:text-2xl font-bold text-white mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">--</span>
           <span class="text-[10px] md:text-xs uppercase tracking-widest text-brand-muted font-bold">Días</span>
         </div>
         
         <!-- Horas -->
         <div class="flex flex-col justify-center items-center bg-brand-dark/60 backdrop-blur-md border border-brand-card p-4 md:p-5 rounded-xl min-w-[80px] md:min-w-[110px] shadow-inner transition-transform hover:-translate-y-1 hover:border-brand-accent/30 duration-300">
-          <span id="hours" class="font-mono text-lg md:text-2xl font-bold text-white mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">00</span>
+          <span id="hours" class="skeleton font-mono text-lg md:text-2xl font-bold text-white mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">--</span>
           <span class="text-[10px] md:text-xs uppercase tracking-widest text-brand-muted font-bold">Horas</span>
         </div>
         
         <!-- Minutos -->
         <div class="flex flex-col justify-center items-center bg-brand-dark/60 backdrop-blur-md border border-brand-card p-4 md:p-5 rounded-xl min-w-[80px] md:min-w-[110px] shadow-inner transition-transform hover:-translate-y-1 hover:border-brand-accent/30 duration-300">
-          <span id="minutes" class="font-mono text-lg md:text-2xl font-bold text-white mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">00</span>
+          <span id="minutes" class="skeleton font-mono text-lg md:text-2xl font-bold text-white mb-1 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]">--</span>
           <span class="text-[10px] md:text-xs uppercase tracking-widest text-brand-muted font-bold">Min</span>
         </div>
         
@@ -46,7 +46,7 @@ const { nextRace } = Astro.props;
         <div class="flex flex-col justify-center items-center bg-brand-dark/80 backdrop-blur-md border border-brand-accent/40 p-4 md:p-5 rounded-xl min-w-[80px] md:min-w-[110px] ring-1 ring-brand-accent/20 relative overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(0,209,255,0.15)] duration-300">
           <!-- Soft cyan overlay tint -->
           <div class="absolute inset-0 bg-brand-accent/[0.03]"></div>
-          <span id="seconds" class="relative z-10 font-mono text-lg md:text-2xl font-bold text-brand-accent mb-1 drop-shadow-[0_0_12px_rgba(0,209,255,0.6)]">00</span>
+          <span id="seconds" class="skeleton relative z-10 font-mono text-lg md:text-2xl font-bold text-brand-accent mb-1 drop-shadow-[0_0_12px_rgba(0,209,255,0.6)]">--</span>
           <span class="relative z-10 text-[10px] md:text-xs uppercase tracking-widest text-brand-accent/80 font-bold">Seg</span>
         </div>
       </div>
@@ -56,43 +56,96 @@ const { nextRace } = Astro.props;
       <span class="inline-flex justify-center items-center w-16 h-16 rounded-full bg-brand-card mb-4 text-brand-muted/70 ring-1 ring-white/5">
         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
       </span>
-      <h3 class="text-2xl font-bold text-white mb-2">Temporada sin datos</h3>
+      <h3 class="text-2xl font-bold text-white mb-2">Próxima carrera sin datos</h3>
       <p class="text-brand-muted">No hay información de sesiones programadas para el evento.</p>
     </div>
   )}
 </section>
 
 <script>
-	const countdownEl = document.getElementById('countdown');
-
-  const dateAttr = countdownEl!.dataset.date;
-
-  const targetDate = new Date(dateAttr!).getTime();
-	const countdownInterval = setInterval(() => {
-		const now = new Date().getTime();
-		const difference = targetDate - now;
-		let d = 0;
-		let h = 0;
-		let m = 0;
-		let s = 0;
-		if (difference <= 0) {
-			// Tiempo alcanzado o superado: detener intervalo
-			clearInterval(countdownInterval);
-		} else {
-			d = Math.floor(difference / (1000 * 60 * 60 * 24));
-			h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-			s = Math.floor((difference % (1000 * 60)) / 1000);
-		}
-		// Mostrar los valores (ya sean reales o ceros)
+  function setupCountdown() {
+    const countdownEl = document.getElementById('countdown');
     const days = document.getElementById('days');
     const hours = document.getElementById('hours');
     const minutes = document.getElementById('minutes');
     const seconds = document.getElementById('seconds');
-    if (!days || !hours || !minutes || !seconds) return;
-		days.textContent = d.toString();
-		hours.textContent = h.toString();
-		minutes.textContent = m.toString();
-		seconds.textContent = s.toString();
-	}, 1000);
+    
+    if (!countdownEl || !days || !hours || !minutes || !seconds) return;
+
+    const dateAttr = countdownEl.dataset.date;
+    if (!dateAttr) return;
+
+    const targetDate = new Date(dateAttr).getTime();
+
+    function update() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      let d = 0, h = 0, m = 0, s = 0;
+
+      if (difference > 0) {
+        d = Math.floor(difference / (1000 * 60 * 60 * 24));
+        h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        s = Math.floor((difference % (1000 * 60)) / 1000);
+      }
+
+      // Add leading zero for better aesthetics
+      days!.textContent = d.toString().padStart(2, '0');
+      hours!.textContent = h.toString().padStart(2, '0');
+      minutes!.textContent = m.toString().padStart(2, '0');
+      seconds!.textContent = s.toString().padStart(2, '0');
+
+      // Remove skeleton effect
+      days!.classList.remove('skeleton');
+      hours!.classList.remove('skeleton');
+      minutes!.classList.remove('skeleton');
+      seconds!.classList.remove('skeleton');
+
+      return difference;
+    }
+
+    // Run first update immediately to prevent 1-second delay
+    const diff = update();
+
+    // Set interval for subsequent updates
+    if (diff > 0) {
+      if (countdownEl.dataset.intervalId) {
+        clearInterval(Number(countdownEl.dataset.intervalId));
+      }
+      
+      const intervalId = setInterval(() => {
+        const remaining = update();
+        if (remaining <= 0) {
+          clearInterval(intervalId);
+        }
+      }, 1000);
+      
+      // Store interval ID in case we need to clean it up (e.g., View Transitions)
+      countdownEl.dataset.intervalId = intervalId.toString();
+    }
+  }
+
+  // Support for Astro View Transitions
+  document.addEventListener('astro:page-load', setupCountdown);
+  // Also run initially for standard loads
+  setupCountdown();
 </script>
+
+<style>
+  .skeleton {
+    animation: skeleton-loading 1s ease-in-out infinite;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.2;
+    }
+  }
+</style>

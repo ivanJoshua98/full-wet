@@ -1,0 +1,49 @@
+---
+import type { models } from "types";
+
+interface Props {
+  driverStanding: models.DriverStanding;
+}
+
+const { driverStanding } = Astro.props as Props;
+---
+
+<div class="flex flex-row gap-2 justify-between items-center p-2 rounded-xl transition-all duration-300 group hover:translate-x-1 hover:bg-white/[0.03] border border-transparent hover:border-white/10">
+
+  <!-- Bloque: Posición -->
+  <div class={`flex flex-col justify-center items-center border rounded-lg p-1 min-w-[40px] md:min-w-[50px] 
+  bg-brand-dark/50 ${
+    driverStanding.position === 1 ? 'text-brand-win border-brand-win' : 
+    driverStanding.position === 2 ? 'text-brand-second border-brand-second' : 
+    driverStanding.position === 3 ? 'text-brand-third border-brand-third' : 
+    'text-slate-200 border-white/10'
+  }`}>
+    <span class="font-mono font-blacks">
+      {driverStanding.position}
+    </span>
+  </div>
+
+  <!-- Bloque: Nombre del piloto -->
+  <div class="w-full flex flex-col ml-2">
+    <p class="font-black uppercase tracking-widest text-sm md:text-base text-balance leading-tight text-slate-200">
+      {driverStanding.driver.name}
+    </p>
+    <!-- Bloque: Nombre de la escuderia + numero del piloto -->
+    <p class="text-xs font-medium tracking-wide items-baseline flex items-center gap-1 text-brand-muted">
+      {driverStanding.teamName}. #{driverStanding.driver.number}
+    </p>
+  </div>
+
+  <div class="min-w-max flex justify-end items-end flex-col justify-end">
+    <!-- Bloque: Puntos ganados -->
+    <span class="flex font-mono text-md md:text-lg font-bold tracking-tight text-slate-100 items-baseline">
+      {driverStanding.points}
+      <span class="text-brand-muted font-bold text-sm ml-1">Pts</span>
+    </span>
+    <!-- Bloque: Carreras ganadas -->
+    <span class="flex tracking-tight items-baseline text-brand-muted font-bold text-sm">
+      {driverStanding.wins} wins
+    </span>
+  </div>
+
+</div>

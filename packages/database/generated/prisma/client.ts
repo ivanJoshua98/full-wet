@@ -86,3 +86,13 @@ export type RaceResult = Prisma.RaceResultModel
  * 
  */
 export type Champion = Prisma.ChampionModel
+/**
+ * Model DriverStanding
+ * 
+ */
+export type DriverStanding = Prisma.DriverStandingModel
+/**
+ * Model ConstructorStanding
+ * 
+ */
+export type ConstructorStanding = Prisma.ConstructorStandingModel

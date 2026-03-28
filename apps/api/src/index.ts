@@ -2,6 +2,8 @@ import express from 'express';
 import { getAllSeasonsHandler } from './controllers/seasonsController.js';
 import { getNextRaceHandler, getRacesByYearHandler, getAllRacesHandler } from './controllers/raceController.js';
 import { getRaceResultsHandler } from './controllers/raceResultController.js';
+import { getDriverStandingsHandler } from './controllers/driverStandingController.js';
+import { getConstructorStandingsHandler } from './controllers/constructorStandingController.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +22,12 @@ app.get('/api/races', getAllRacesHandler);
 
 // Race results Routes
 app.get('/api/races/:raceId/results', getRaceResultsHandler);
+
+// Driver standings Routes
+app.get('/api/:year/driver-standings', getDriverStandingsHandler);
+
+// Constructor standings Routes
+app.get('/api/:year/constructor-standings', getConstructorStandingsHandler);
 
 app.listen(PORT, () => {
   console.log(`🚀 Full Wet - Backend Express corriendo en http://localhost:${PORT}`);

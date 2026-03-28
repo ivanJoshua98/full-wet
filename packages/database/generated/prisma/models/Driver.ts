@@ -192,7 +192,7 @@ export type DriverGroupByOutputType = {
   _max: DriverMaxAggregateOutputType | null
 }
 
-type GetDriverGroupByPayload<T extends DriverGroupByArgs> = Prisma.PrismaPromise<
+export type GetDriverGroupByPayload<T extends DriverGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<DriverGroupByOutputType, T['by']> &
       {
@@ -220,6 +220,7 @@ export type DriverWhereInput = {
   results?: Prisma.RaceResultListRelationFilter
   qualifyingResults?: Prisma.QualifyingResultListRelationFilter
   sprintResults?: Prisma.SprintResultListRelationFilter
+  driverStandings?: Prisma.DriverStandingListRelationFilter
 }
 
 export type DriverOrderByWithRelationInput = {
@@ -232,6 +233,7 @@ export type DriverOrderByWithRelationInput = {
   results?: Prisma.RaceResultOrderByRelationAggregateInput
   qualifyingResults?: Prisma.QualifyingResultOrderByRelationAggregateInput
   sprintResults?: Prisma.SprintResultOrderByRelationAggregateInput
+  driverStandings?: Prisma.DriverStandingOrderByRelationAggregateInput
 }
 
 export type DriverWhereUniqueInput = Prisma.AtLeast<{
@@ -247,6 +249,7 @@ export type DriverWhereUniqueInput = Prisma.AtLeast<{
   results?: Prisma.RaceResultListRelationFilter
   qualifyingResults?: Prisma.QualifyingResultListRelationFilter
   sprintResults?: Prisma.SprintResultListRelationFilter
+  driverStandings?: Prisma.DriverStandingListRelationFilter
 }, "id">
 
 export type DriverOrderByWithAggregationInput = {
@@ -282,6 +285,7 @@ export type DriverCreateInput = {
   results?: Prisma.RaceResultCreateNestedManyWithoutDriverInput
   qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutDriverInput
   sprintResults?: Prisma.SprintResultCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingCreateNestedManyWithoutDriverInput
 }
 
 export type DriverUncheckedCreateInput = {
@@ -293,6 +297,7 @@ export type DriverUncheckedCreateInput = {
   results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutDriverInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutDriverInput
   sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingUncheckedCreateNestedManyWithoutDriverInput
 }
 
 export type DriverUpdateInput = {
@@ -304,6 +309,7 @@ export type DriverUpdateInput = {
   results?: Prisma.RaceResultUpdateManyWithoutDriverNestedInput
   qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutDriverNestedInput
   sprintResults?: Prisma.SprintResultUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUpdateManyWithoutDriverNestedInput
 }
 
 export type DriverUncheckedUpdateInput = {
@@ -315,6 +321,7 @@ export type DriverUncheckedUpdateInput = {
   results?: Prisma.RaceResultUncheckedUpdateManyWithoutDriverNestedInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutDriverNestedInput
   sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUncheckedUpdateManyWithoutDriverNestedInput
 }
 
 export type DriverCreateManyInput = {
@@ -479,6 +486,20 @@ export type DriverUpdateOneRequiredWithoutResultsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DriverUpdateToOneWithWhereWithoutResultsInput, Prisma.DriverUpdateWithoutResultsInput>, Prisma.DriverUncheckedUpdateWithoutResultsInput>
 }
 
+export type DriverCreateNestedOneWithoutDriverStandingsInput = {
+  create?: Prisma.XOR<Prisma.DriverCreateWithoutDriverStandingsInput, Prisma.DriverUncheckedCreateWithoutDriverStandingsInput>
+  connectOrCreate?: Prisma.DriverCreateOrConnectWithoutDriverStandingsInput
+  connect?: Prisma.DriverWhereUniqueInput
+}
+
+export type DriverUpdateOneRequiredWithoutDriverStandingsNestedInput = {
+  create?: Prisma.XOR<Prisma.DriverCreateWithoutDriverStandingsInput, Prisma.DriverUncheckedCreateWithoutDriverStandingsInput>
+  connectOrCreate?: Prisma.DriverCreateOrConnectWithoutDriverStandingsInput
+  upsert?: Prisma.DriverUpsertWithoutDriverStandingsInput
+  connect?: Prisma.DriverWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DriverUpdateToOneWithWhereWithoutDriverStandingsInput, Prisma.DriverUpdateWithoutDriverStandingsInput>, Prisma.DriverUncheckedUpdateWithoutDriverStandingsInput>
+}
+
 export type DriverCreateWithoutTeamInput = {
   id: string
   name: string
@@ -487,6 +508,7 @@ export type DriverCreateWithoutTeamInput = {
   results?: Prisma.RaceResultCreateNestedManyWithoutDriverInput
   qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutDriverInput
   sprintResults?: Prisma.SprintResultCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingCreateNestedManyWithoutDriverInput
 }
 
 export type DriverUncheckedCreateWithoutTeamInput = {
@@ -497,6 +519,7 @@ export type DriverUncheckedCreateWithoutTeamInput = {
   results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutDriverInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutDriverInput
   sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingUncheckedCreateNestedManyWithoutDriverInput
 }
 
 export type DriverCreateOrConnectWithoutTeamInput = {
@@ -544,6 +567,7 @@ export type DriverCreateWithoutQualifyingResultsInput = {
   team: Prisma.TeamCreateNestedOneWithoutDriversInput
   results?: Prisma.RaceResultCreateNestedManyWithoutDriverInput
   sprintResults?: Prisma.SprintResultCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingCreateNestedManyWithoutDriverInput
 }
 
 export type DriverUncheckedCreateWithoutQualifyingResultsInput = {
@@ -554,6 +578,7 @@ export type DriverUncheckedCreateWithoutQualifyingResultsInput = {
   teamId: string
   results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutDriverInput
   sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingUncheckedCreateNestedManyWithoutDriverInput
 }
 
 export type DriverCreateOrConnectWithoutQualifyingResultsInput = {
@@ -580,6 +605,7 @@ export type DriverUpdateWithoutQualifyingResultsInput = {
   team?: Prisma.TeamUpdateOneRequiredWithoutDriversNestedInput
   results?: Prisma.RaceResultUpdateManyWithoutDriverNestedInput
   sprintResults?: Prisma.SprintResultUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUpdateManyWithoutDriverNestedInput
 }
 
 export type DriverUncheckedUpdateWithoutQualifyingResultsInput = {
@@ -590,6 +616,7 @@ export type DriverUncheckedUpdateWithoutQualifyingResultsInput = {
   teamId?: Prisma.StringFieldUpdateOperationsInput | string
   results?: Prisma.RaceResultUncheckedUpdateManyWithoutDriverNestedInput
   sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUncheckedUpdateManyWithoutDriverNestedInput
 }
 
 export type DriverCreateWithoutSprintResultsInput = {
@@ -600,6 +627,7 @@ export type DriverCreateWithoutSprintResultsInput = {
   team: Prisma.TeamCreateNestedOneWithoutDriversInput
   results?: Prisma.RaceResultCreateNestedManyWithoutDriverInput
   qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingCreateNestedManyWithoutDriverInput
 }
 
 export type DriverUncheckedCreateWithoutSprintResultsInput = {
@@ -610,6 +638,7 @@ export type DriverUncheckedCreateWithoutSprintResultsInput = {
   teamId: string
   results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutDriverInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingUncheckedCreateNestedManyWithoutDriverInput
 }
 
 export type DriverCreateOrConnectWithoutSprintResultsInput = {
@@ -636,6 +665,7 @@ export type DriverUpdateWithoutSprintResultsInput = {
   team?: Prisma.TeamUpdateOneRequiredWithoutDriversNestedInput
   results?: Prisma.RaceResultUpdateManyWithoutDriverNestedInput
   qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUpdateManyWithoutDriverNestedInput
 }
 
 export type DriverUncheckedUpdateWithoutSprintResultsInput = {
@@ -646,6 +676,7 @@ export type DriverUncheckedUpdateWithoutSprintResultsInput = {
   teamId?: Prisma.StringFieldUpdateOperationsInput | string
   results?: Prisma.RaceResultUncheckedUpdateManyWithoutDriverNestedInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUncheckedUpdateManyWithoutDriverNestedInput
 }
 
 export type DriverCreateWithoutResultsInput = {
@@ -656,6 +687,7 @@ export type DriverCreateWithoutResultsInput = {
   team: Prisma.TeamCreateNestedOneWithoutDriversInput
   qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutDriverInput
   sprintResults?: Prisma.SprintResultCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingCreateNestedManyWithoutDriverInput
 }
 
 export type DriverUncheckedCreateWithoutResultsInput = {
@@ -666,6 +698,7 @@ export type DriverUncheckedCreateWithoutResultsInput = {
   teamId: string
   qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutDriverInput
   sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutDriverInput
+  driverStandings?: Prisma.DriverStandingUncheckedCreateNestedManyWithoutDriverInput
 }
 
 export type DriverCreateOrConnectWithoutResultsInput = {
@@ -692,6 +725,7 @@ export type DriverUpdateWithoutResultsInput = {
   team?: Prisma.TeamUpdateOneRequiredWithoutDriversNestedInput
   qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutDriverNestedInput
   sprintResults?: Prisma.SprintResultUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUpdateManyWithoutDriverNestedInput
 }
 
 export type DriverUncheckedUpdateWithoutResultsInput = {
@@ -700,6 +734,67 @@ export type DriverUncheckedUpdateWithoutResultsInput = {
   number?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   teamId?: Prisma.StringFieldUpdateOperationsInput | string
+  qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutDriverNestedInput
+  sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUncheckedUpdateManyWithoutDriverNestedInput
+}
+
+export type DriverCreateWithoutDriverStandingsInput = {
+  id: string
+  name: string
+  number?: number | null
+  nationality?: string | null
+  team: Prisma.TeamCreateNestedOneWithoutDriversInput
+  results?: Prisma.RaceResultCreateNestedManyWithoutDriverInput
+  qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutDriverInput
+  sprintResults?: Prisma.SprintResultCreateNestedManyWithoutDriverInput
+}
+
+export type DriverUncheckedCreateWithoutDriverStandingsInput = {
+  id: string
+  name: string
+  number?: number | null
+  nationality?: string | null
+  teamId: string
+  results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutDriverInput
+  qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutDriverInput
+  sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutDriverInput
+}
+
+export type DriverCreateOrConnectWithoutDriverStandingsInput = {
+  where: Prisma.DriverWhereUniqueInput
+  create: Prisma.XOR<Prisma.DriverCreateWithoutDriverStandingsInput, Prisma.DriverUncheckedCreateWithoutDriverStandingsInput>
+}
+
+export type DriverUpsertWithoutDriverStandingsInput = {
+  update: Prisma.XOR<Prisma.DriverUpdateWithoutDriverStandingsInput, Prisma.DriverUncheckedUpdateWithoutDriverStandingsInput>
+  create: Prisma.XOR<Prisma.DriverCreateWithoutDriverStandingsInput, Prisma.DriverUncheckedCreateWithoutDriverStandingsInput>
+  where?: Prisma.DriverWhereInput
+}
+
+export type DriverUpdateToOneWithWhereWithoutDriverStandingsInput = {
+  where?: Prisma.DriverWhereInput
+  data: Prisma.XOR<Prisma.DriverUpdateWithoutDriverStandingsInput, Prisma.DriverUncheckedUpdateWithoutDriverStandingsInput>
+}
+
+export type DriverUpdateWithoutDriverStandingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  team?: Prisma.TeamUpdateOneRequiredWithoutDriversNestedInput
+  results?: Prisma.RaceResultUpdateManyWithoutDriverNestedInput
+  qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutDriverNestedInput
+  sprintResults?: Prisma.SprintResultUpdateManyWithoutDriverNestedInput
+}
+
+export type DriverUncheckedUpdateWithoutDriverStandingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  number?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  nationality?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  teamId?: Prisma.StringFieldUpdateOperationsInput | string
+  results?: Prisma.RaceResultUncheckedUpdateManyWithoutDriverNestedInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutDriverNestedInput
   sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutDriverNestedInput
 }
@@ -719,6 +814,7 @@ export type DriverUpdateWithoutTeamInput = {
   results?: Prisma.RaceResultUpdateManyWithoutDriverNestedInput
   qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutDriverNestedInput
   sprintResults?: Prisma.SprintResultUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUpdateManyWithoutDriverNestedInput
 }
 
 export type DriverUncheckedUpdateWithoutTeamInput = {
@@ -729,6 +825,7 @@ export type DriverUncheckedUpdateWithoutTeamInput = {
   results?: Prisma.RaceResultUncheckedUpdateManyWithoutDriverNestedInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutDriverNestedInput
   sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutDriverNestedInput
+  driverStandings?: Prisma.DriverStandingUncheckedUpdateManyWithoutDriverNestedInput
 }
 
 export type DriverUncheckedUpdateManyWithoutTeamInput = {
@@ -747,12 +844,14 @@ export type DriverCountOutputType = {
   results: number
   qualifyingResults: number
   sprintResults: number
+  driverStandings: number
 }
 
 export type DriverCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   results?: boolean | DriverCountOutputTypeCountResultsArgs
   qualifyingResults?: boolean | DriverCountOutputTypeCountQualifyingResultsArgs
   sprintResults?: boolean | DriverCountOutputTypeCountSprintResultsArgs
+  driverStandings?: boolean | DriverCountOutputTypeCountDriverStandingsArgs
 }
 
 /**
@@ -786,6 +885,13 @@ export type DriverCountOutputTypeCountSprintResultsArgs<ExtArgs extends runtime.
   where?: Prisma.SprintResultWhereInput
 }
 
+/**
+ * DriverCountOutputType without action
+ */
+export type DriverCountOutputTypeCountDriverStandingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DriverStandingWhereInput
+}
+
 
 export type DriverSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -797,6 +903,7 @@ export type DriverSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   results?: boolean | Prisma.Driver$resultsArgs<ExtArgs>
   qualifyingResults?: boolean | Prisma.Driver$qualifyingResultsArgs<ExtArgs>
   sprintResults?: boolean | Prisma.Driver$sprintResultsArgs<ExtArgs>
+  driverStandings?: boolean | Prisma.Driver$driverStandingsArgs<ExtArgs>
   _count?: boolean | Prisma.DriverCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["driver"]>
 
@@ -832,6 +939,7 @@ export type DriverInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   results?: boolean | Prisma.Driver$resultsArgs<ExtArgs>
   qualifyingResults?: boolean | Prisma.Driver$qualifyingResultsArgs<ExtArgs>
   sprintResults?: boolean | Prisma.Driver$sprintResultsArgs<ExtArgs>
+  driverStandings?: boolean | Prisma.Driver$driverStandingsArgs<ExtArgs>
   _count?: boolean | Prisma.DriverCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DriverIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -848,6 +956,7 @@ export type $DriverPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     results: Prisma.$RaceResultPayload<ExtArgs>[]
     qualifyingResults: Prisma.$QualifyingResultPayload<ExtArgs>[]
     sprintResults: Prisma.$SprintResultPayload<ExtArgs>[]
+    driverStandings: Prisma.$DriverStandingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1253,6 +1362,7 @@ export interface Prisma__DriverClient<T, Null = never, ExtArgs extends runtime.T
   results<T extends Prisma.Driver$resultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Driver$resultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RaceResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   qualifyingResults<T extends Prisma.Driver$qualifyingResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Driver$qualifyingResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QualifyingResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sprintResults<T extends Prisma.Driver$sprintResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Driver$sprintResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SprintResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  driverStandings<T extends Prisma.Driver$driverStandingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Driver$driverStandingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DriverStandingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1757,6 +1867,30 @@ export type Driver$sprintResultsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.SprintResultScalarFieldEnum | Prisma.SprintResultScalarFieldEnum[]
+}
+
+/**
+ * Driver.driverStandings
+ */
+export type Driver$driverStandingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DriverStanding
+   */
+  select?: Prisma.DriverStandingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DriverStanding
+   */
+  omit?: Prisma.DriverStandingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DriverStandingInclude<ExtArgs> | null
+  where?: Prisma.DriverStandingWhereInput
+  orderBy?: Prisma.DriverStandingOrderByWithRelationInput | Prisma.DriverStandingOrderByWithRelationInput[]
+  cursor?: Prisma.DriverStandingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DriverStandingScalarFieldEnum | Prisma.DriverStandingScalarFieldEnum[]
 }
 
 /**

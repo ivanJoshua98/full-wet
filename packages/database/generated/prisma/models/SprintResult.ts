@@ -247,7 +247,7 @@ export type SprintResultGroupByOutputType = {
   _max: SprintResultMaxAggregateOutputType | null
 }
 
-type GetSprintResultGroupByPayload<T extends SprintResultGroupByArgs> = Prisma.PrismaPromise<
+export type GetSprintResultGroupByPayload<T extends SprintResultGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<SprintResultGroupByOutputType, T['by']> &
       {

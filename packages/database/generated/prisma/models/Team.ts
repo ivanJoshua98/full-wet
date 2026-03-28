@@ -165,7 +165,7 @@ export type TeamGroupByOutputType = {
   _max: TeamMaxAggregateOutputType | null
 }
 
-type GetTeamGroupByPayload<T extends TeamGroupByArgs> = Prisma.PrismaPromise<
+export type GetTeamGroupByPayload<T extends TeamGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<TeamGroupByOutputType, T['by']> &
       {
@@ -194,6 +194,7 @@ export type TeamWhereInput = {
   results?: Prisma.RaceResultListRelationFilter
   qualifyingResults?: Prisma.QualifyingResultListRelationFilter
   sprintResults?: Prisma.SprintResultListRelationFilter
+  constructorStandings?: Prisma.ConstructorStandingListRelationFilter
 }
 
 export type TeamOrderByWithRelationInput = {
@@ -207,6 +208,7 @@ export type TeamOrderByWithRelationInput = {
   results?: Prisma.RaceResultOrderByRelationAggregateInput
   qualifyingResults?: Prisma.QualifyingResultOrderByRelationAggregateInput
   sprintResults?: Prisma.SprintResultOrderByRelationAggregateInput
+  constructorStandings?: Prisma.ConstructorStandingOrderByRelationAggregateInput
 }
 
 export type TeamWhereUniqueInput = Prisma.AtLeast<{
@@ -223,6 +225,7 @@ export type TeamWhereUniqueInput = Prisma.AtLeast<{
   results?: Prisma.RaceResultListRelationFilter
   qualifyingResults?: Prisma.QualifyingResultListRelationFilter
   sprintResults?: Prisma.SprintResultListRelationFilter
+  constructorStandings?: Prisma.ConstructorStandingListRelationFilter
 }, "id">
 
 export type TeamOrderByWithAggregationInput = {
@@ -260,6 +263,7 @@ export type TeamCreateInput = {
   results?: Prisma.RaceResultCreateNestedManyWithoutTeamInput
   qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutTeamInput
   sprintResults?: Prisma.SprintResultCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUncheckedCreateInput = {
@@ -273,6 +277,7 @@ export type TeamUncheckedCreateInput = {
   results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutTeamInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutTeamInput
   sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUpdateInput = {
@@ -286,6 +291,7 @@ export type TeamUpdateInput = {
   results?: Prisma.RaceResultUpdateManyWithoutTeamNestedInput
   qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutTeamNestedInput
   sprintResults?: Prisma.SprintResultUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamUncheckedUpdateInput = {
@@ -299,6 +305,7 @@ export type TeamUncheckedUpdateInput = {
   results?: Prisma.RaceResultUncheckedUpdateManyWithoutTeamNestedInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutTeamNestedInput
   sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamCreateManyInput = {
@@ -416,6 +423,20 @@ export type TeamUpdateOneRequiredWithoutResultsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TeamUpdateToOneWithWhereWithoutResultsInput, Prisma.TeamUpdateWithoutResultsInput>, Prisma.TeamUncheckedUpdateWithoutResultsInput>
 }
 
+export type TeamCreateNestedOneWithoutConstructorStandingsInput = {
+  create?: Prisma.XOR<Prisma.TeamCreateWithoutConstructorStandingsInput, Prisma.TeamUncheckedCreateWithoutConstructorStandingsInput>
+  connectOrCreate?: Prisma.TeamCreateOrConnectWithoutConstructorStandingsInput
+  connect?: Prisma.TeamWhereUniqueInput
+}
+
+export type TeamUpdateOneRequiredWithoutConstructorStandingsNestedInput = {
+  create?: Prisma.XOR<Prisma.TeamCreateWithoutConstructorStandingsInput, Prisma.TeamUncheckedCreateWithoutConstructorStandingsInput>
+  connectOrCreate?: Prisma.TeamCreateOrConnectWithoutConstructorStandingsInput
+  upsert?: Prisma.TeamUpsertWithoutConstructorStandingsInput
+  connect?: Prisma.TeamWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TeamUpdateToOneWithWhereWithoutConstructorStandingsInput, Prisma.TeamUpdateWithoutConstructorStandingsInput>, Prisma.TeamUncheckedUpdateWithoutConstructorStandingsInput>
+}
+
 export type TeamCreateWithoutDriversInput = {
   id: string
   name: string
@@ -426,6 +447,7 @@ export type TeamCreateWithoutDriversInput = {
   results?: Prisma.RaceResultCreateNestedManyWithoutTeamInput
   qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutTeamInput
   sprintResults?: Prisma.SprintResultCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUncheckedCreateWithoutDriversInput = {
@@ -438,6 +460,7 @@ export type TeamUncheckedCreateWithoutDriversInput = {
   results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutTeamInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutTeamInput
   sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedCreateNestedManyWithoutTeamInput
 }
 
 export type TeamCreateOrConnectWithoutDriversInput = {
@@ -466,6 +489,7 @@ export type TeamUpdateWithoutDriversInput = {
   results?: Prisma.RaceResultUpdateManyWithoutTeamNestedInput
   qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutTeamNestedInput
   sprintResults?: Prisma.SprintResultUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamUncheckedUpdateWithoutDriversInput = {
@@ -478,6 +502,7 @@ export type TeamUncheckedUpdateWithoutDriversInput = {
   results?: Prisma.RaceResultUncheckedUpdateManyWithoutTeamNestedInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutTeamNestedInput
   sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamCreateWithoutQualifyingResultsInput = {
@@ -490,6 +515,7 @@ export type TeamCreateWithoutQualifyingResultsInput = {
   drivers?: Prisma.DriverCreateNestedManyWithoutTeamInput
   results?: Prisma.RaceResultCreateNestedManyWithoutTeamInput
   sprintResults?: Prisma.SprintResultCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUncheckedCreateWithoutQualifyingResultsInput = {
@@ -502,6 +528,7 @@ export type TeamUncheckedCreateWithoutQualifyingResultsInput = {
   drivers?: Prisma.DriverUncheckedCreateNestedManyWithoutTeamInput
   results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutTeamInput
   sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedCreateNestedManyWithoutTeamInput
 }
 
 export type TeamCreateOrConnectWithoutQualifyingResultsInput = {
@@ -530,6 +557,7 @@ export type TeamUpdateWithoutQualifyingResultsInput = {
   drivers?: Prisma.DriverUpdateManyWithoutTeamNestedInput
   results?: Prisma.RaceResultUpdateManyWithoutTeamNestedInput
   sprintResults?: Prisma.SprintResultUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamUncheckedUpdateWithoutQualifyingResultsInput = {
@@ -542,6 +570,7 @@ export type TeamUncheckedUpdateWithoutQualifyingResultsInput = {
   drivers?: Prisma.DriverUncheckedUpdateManyWithoutTeamNestedInput
   results?: Prisma.RaceResultUncheckedUpdateManyWithoutTeamNestedInput
   sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamCreateWithoutSprintResultsInput = {
@@ -554,6 +583,7 @@ export type TeamCreateWithoutSprintResultsInput = {
   drivers?: Prisma.DriverCreateNestedManyWithoutTeamInput
   results?: Prisma.RaceResultCreateNestedManyWithoutTeamInput
   qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUncheckedCreateWithoutSprintResultsInput = {
@@ -566,6 +596,7 @@ export type TeamUncheckedCreateWithoutSprintResultsInput = {
   drivers?: Prisma.DriverUncheckedCreateNestedManyWithoutTeamInput
   results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutTeamInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedCreateNestedManyWithoutTeamInput
 }
 
 export type TeamCreateOrConnectWithoutSprintResultsInput = {
@@ -594,6 +625,7 @@ export type TeamUpdateWithoutSprintResultsInput = {
   drivers?: Prisma.DriverUpdateManyWithoutTeamNestedInput
   results?: Prisma.RaceResultUpdateManyWithoutTeamNestedInput
   qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamUncheckedUpdateWithoutSprintResultsInput = {
@@ -606,6 +638,7 @@ export type TeamUncheckedUpdateWithoutSprintResultsInput = {
   drivers?: Prisma.DriverUncheckedUpdateManyWithoutTeamNestedInput
   results?: Prisma.RaceResultUncheckedUpdateManyWithoutTeamNestedInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamCreateWithoutResultsInput = {
@@ -618,6 +651,7 @@ export type TeamCreateWithoutResultsInput = {
   drivers?: Prisma.DriverCreateNestedManyWithoutTeamInput
   qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutTeamInput
   sprintResults?: Prisma.SprintResultCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingCreateNestedManyWithoutTeamInput
 }
 
 export type TeamUncheckedCreateWithoutResultsInput = {
@@ -630,6 +664,7 @@ export type TeamUncheckedCreateWithoutResultsInput = {
   drivers?: Prisma.DriverUncheckedCreateNestedManyWithoutTeamInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutTeamInput
   sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutTeamInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedCreateNestedManyWithoutTeamInput
 }
 
 export type TeamCreateOrConnectWithoutResultsInput = {
@@ -658,6 +693,7 @@ export type TeamUpdateWithoutResultsInput = {
   drivers?: Prisma.DriverUpdateManyWithoutTeamNestedInput
   qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutTeamNestedInput
   sprintResults?: Prisma.SprintResultUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUpdateManyWithoutTeamNestedInput
 }
 
 export type TeamUncheckedUpdateWithoutResultsInput = {
@@ -668,6 +704,75 @@ export type TeamUncheckedUpdateWithoutResultsInput = {
   chassis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   engine?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   drivers?: Prisma.DriverUncheckedUpdateManyWithoutTeamNestedInput
+  qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutTeamNestedInput
+  sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutTeamNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedUpdateManyWithoutTeamNestedInput
+}
+
+export type TeamCreateWithoutConstructorStandingsInput = {
+  id: string
+  name: string
+  base?: string | null
+  chief?: string | null
+  chassis?: string | null
+  engine?: string | null
+  drivers?: Prisma.DriverCreateNestedManyWithoutTeamInput
+  results?: Prisma.RaceResultCreateNestedManyWithoutTeamInput
+  qualifyingResults?: Prisma.QualifyingResultCreateNestedManyWithoutTeamInput
+  sprintResults?: Prisma.SprintResultCreateNestedManyWithoutTeamInput
+}
+
+export type TeamUncheckedCreateWithoutConstructorStandingsInput = {
+  id: string
+  name: string
+  base?: string | null
+  chief?: string | null
+  chassis?: string | null
+  engine?: string | null
+  drivers?: Prisma.DriverUncheckedCreateNestedManyWithoutTeamInput
+  results?: Prisma.RaceResultUncheckedCreateNestedManyWithoutTeamInput
+  qualifyingResults?: Prisma.QualifyingResultUncheckedCreateNestedManyWithoutTeamInput
+  sprintResults?: Prisma.SprintResultUncheckedCreateNestedManyWithoutTeamInput
+}
+
+export type TeamCreateOrConnectWithoutConstructorStandingsInput = {
+  where: Prisma.TeamWhereUniqueInput
+  create: Prisma.XOR<Prisma.TeamCreateWithoutConstructorStandingsInput, Prisma.TeamUncheckedCreateWithoutConstructorStandingsInput>
+}
+
+export type TeamUpsertWithoutConstructorStandingsInput = {
+  update: Prisma.XOR<Prisma.TeamUpdateWithoutConstructorStandingsInput, Prisma.TeamUncheckedUpdateWithoutConstructorStandingsInput>
+  create: Prisma.XOR<Prisma.TeamCreateWithoutConstructorStandingsInput, Prisma.TeamUncheckedCreateWithoutConstructorStandingsInput>
+  where?: Prisma.TeamWhereInput
+}
+
+export type TeamUpdateToOneWithWhereWithoutConstructorStandingsInput = {
+  where?: Prisma.TeamWhereInput
+  data: Prisma.XOR<Prisma.TeamUpdateWithoutConstructorStandingsInput, Prisma.TeamUncheckedUpdateWithoutConstructorStandingsInput>
+}
+
+export type TeamUpdateWithoutConstructorStandingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  base?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chassis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engine?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drivers?: Prisma.DriverUpdateManyWithoutTeamNestedInput
+  results?: Prisma.RaceResultUpdateManyWithoutTeamNestedInput
+  qualifyingResults?: Prisma.QualifyingResultUpdateManyWithoutTeamNestedInput
+  sprintResults?: Prisma.SprintResultUpdateManyWithoutTeamNestedInput
+}
+
+export type TeamUncheckedUpdateWithoutConstructorStandingsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  base?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chief?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  chassis?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  engine?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  drivers?: Prisma.DriverUncheckedUpdateManyWithoutTeamNestedInput
+  results?: Prisma.RaceResultUncheckedUpdateManyWithoutTeamNestedInput
   qualifyingResults?: Prisma.QualifyingResultUncheckedUpdateManyWithoutTeamNestedInput
   sprintResults?: Prisma.SprintResultUncheckedUpdateManyWithoutTeamNestedInput
 }
@@ -682,6 +787,7 @@ export type TeamCountOutputType = {
   results: number
   qualifyingResults: number
   sprintResults: number
+  constructorStandings: number
 }
 
 export type TeamCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -689,6 +795,7 @@ export type TeamCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   results?: boolean | TeamCountOutputTypeCountResultsArgs
   qualifyingResults?: boolean | TeamCountOutputTypeCountQualifyingResultsArgs
   sprintResults?: boolean | TeamCountOutputTypeCountSprintResultsArgs
+  constructorStandings?: boolean | TeamCountOutputTypeCountConstructorStandingsArgs
 }
 
 /**
@@ -729,6 +836,13 @@ export type TeamCountOutputTypeCountSprintResultsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.SprintResultWhereInput
 }
 
+/**
+ * TeamCountOutputType without action
+ */
+export type TeamCountOutputTypeCountConstructorStandingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConstructorStandingWhereInput
+}
+
 
 export type TeamSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -741,6 +855,7 @@ export type TeamSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   results?: boolean | Prisma.Team$resultsArgs<ExtArgs>
   qualifyingResults?: boolean | Prisma.Team$qualifyingResultsArgs<ExtArgs>
   sprintResults?: boolean | Prisma.Team$sprintResultsArgs<ExtArgs>
+  constructorStandings?: boolean | Prisma.Team$constructorStandingsArgs<ExtArgs>
   _count?: boolean | Prisma.TeamCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["team"]>
 
@@ -777,6 +892,7 @@ export type TeamInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   results?: boolean | Prisma.Team$resultsArgs<ExtArgs>
   qualifyingResults?: boolean | Prisma.Team$qualifyingResultsArgs<ExtArgs>
   sprintResults?: boolean | Prisma.Team$sprintResultsArgs<ExtArgs>
+  constructorStandings?: boolean | Prisma.Team$constructorStandingsArgs<ExtArgs>
   _count?: boolean | Prisma.TeamCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TeamIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -789,6 +905,7 @@ export type $TeamPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     results: Prisma.$RaceResultPayload<ExtArgs>[]
     qualifyingResults: Prisma.$QualifyingResultPayload<ExtArgs>[]
     sprintResults: Prisma.$SprintResultPayload<ExtArgs>[]
+    constructorStandings: Prisma.$ConstructorStandingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1195,6 +1312,7 @@ export interface Prisma__TeamClient<T, Null = never, ExtArgs extends runtime.Typ
   results<T extends Prisma.Team$resultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Team$resultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RaceResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   qualifyingResults<T extends Prisma.Team$qualifyingResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Team$qualifyingResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QualifyingResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sprintResults<T extends Prisma.Team$sprintResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Team$sprintResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SprintResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  constructorStandings<T extends Prisma.Team$constructorStandingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Team$constructorStandingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConstructorStandingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1716,6 +1834,30 @@ export type Team$sprintResultsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.SprintResultScalarFieldEnum | Prisma.SprintResultScalarFieldEnum[]
+}
+
+/**
+ * Team.constructorStandings
+ */
+export type Team$constructorStandingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ConstructorStanding
+   */
+  select?: Prisma.ConstructorStandingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ConstructorStanding
+   */
+  omit?: Prisma.ConstructorStandingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConstructorStandingInclude<ExtArgs> | null
+  where?: Prisma.ConstructorStandingWhereInput
+  orderBy?: Prisma.ConstructorStandingOrderByWithRelationInput | Prisma.ConstructorStandingOrderByWithRelationInput[]
+  cursor?: Prisma.ConstructorStandingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ConstructorStandingScalarFieldEnum | Prisma.ConstructorStandingScalarFieldEnum[]
 }
 
 /**

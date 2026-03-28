@@ -164,7 +164,7 @@ export type SeasonGroupByOutputType = {
   _max: SeasonMaxAggregateOutputType | null
 }
 
-type GetSeasonGroupByPayload<T extends SeasonGroupByArgs> = Prisma.PrismaPromise<
+export type GetSeasonGroupByPayload<T extends SeasonGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<SeasonGroupByOutputType, T['by']> &
       {
@@ -185,11 +185,15 @@ export type SeasonWhereInput = {
   NOT?: Prisma.SeasonWhereInput | Prisma.SeasonWhereInput[]
   year?: Prisma.IntFilter<"Season"> | number
   races?: Prisma.RaceListRelationFilter
+  driverStandings?: Prisma.DriverStandingListRelationFilter
+  constructorStandings?: Prisma.ConstructorStandingListRelationFilter
 }
 
 export type SeasonOrderByWithRelationInput = {
   year?: Prisma.SortOrder
   races?: Prisma.RaceOrderByRelationAggregateInput
+  driverStandings?: Prisma.DriverStandingOrderByRelationAggregateInput
+  constructorStandings?: Prisma.ConstructorStandingOrderByRelationAggregateInput
 }
 
 export type SeasonWhereUniqueInput = Prisma.AtLeast<{
@@ -198,6 +202,8 @@ export type SeasonWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.SeasonWhereInput[]
   NOT?: Prisma.SeasonWhereInput | Prisma.SeasonWhereInput[]
   races?: Prisma.RaceListRelationFilter
+  driverStandings?: Prisma.DriverStandingListRelationFilter
+  constructorStandings?: Prisma.ConstructorStandingListRelationFilter
 }, "year">
 
 export type SeasonOrderByWithAggregationInput = {
@@ -219,21 +225,29 @@ export type SeasonScalarWhereWithAggregatesInput = {
 export type SeasonCreateInput = {
   year: number
   races?: Prisma.RaceCreateNestedManyWithoutSeasonInput
+  driverStandings?: Prisma.DriverStandingCreateNestedManyWithoutSeasonInput
+  constructorStandings?: Prisma.ConstructorStandingCreateNestedManyWithoutSeasonInput
 }
 
 export type SeasonUncheckedCreateInput = {
   year: number
   races?: Prisma.RaceUncheckedCreateNestedManyWithoutSeasonInput
+  driverStandings?: Prisma.DriverStandingUncheckedCreateNestedManyWithoutSeasonInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedCreateNestedManyWithoutSeasonInput
 }
 
 export type SeasonUpdateInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   races?: Prisma.RaceUpdateManyWithoutSeasonNestedInput
+  driverStandings?: Prisma.DriverStandingUpdateManyWithoutSeasonNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUpdateManyWithoutSeasonNestedInput
 }
 
 export type SeasonUncheckedUpdateInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
   races?: Prisma.RaceUncheckedUpdateManyWithoutSeasonNestedInput
+  driverStandings?: Prisma.DriverStandingUncheckedUpdateManyWithoutSeasonNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedUpdateManyWithoutSeasonNestedInput
 }
 
 export type SeasonCreateManyInput = {
@@ -295,12 +309,44 @@ export type SeasonUpdateOneRequiredWithoutRacesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SeasonUpdateToOneWithWhereWithoutRacesInput, Prisma.SeasonUpdateWithoutRacesInput>, Prisma.SeasonUncheckedUpdateWithoutRacesInput>
 }
 
+export type SeasonCreateNestedOneWithoutDriverStandingsInput = {
+  create?: Prisma.XOR<Prisma.SeasonCreateWithoutDriverStandingsInput, Prisma.SeasonUncheckedCreateWithoutDriverStandingsInput>
+  connectOrCreate?: Prisma.SeasonCreateOrConnectWithoutDriverStandingsInput
+  connect?: Prisma.SeasonWhereUniqueInput
+}
+
+export type SeasonUpdateOneRequiredWithoutDriverStandingsNestedInput = {
+  create?: Prisma.XOR<Prisma.SeasonCreateWithoutDriverStandingsInput, Prisma.SeasonUncheckedCreateWithoutDriverStandingsInput>
+  connectOrCreate?: Prisma.SeasonCreateOrConnectWithoutDriverStandingsInput
+  upsert?: Prisma.SeasonUpsertWithoutDriverStandingsInput
+  connect?: Prisma.SeasonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SeasonUpdateToOneWithWhereWithoutDriverStandingsInput, Prisma.SeasonUpdateWithoutDriverStandingsInput>, Prisma.SeasonUncheckedUpdateWithoutDriverStandingsInput>
+}
+
+export type SeasonCreateNestedOneWithoutConstructorStandingsInput = {
+  create?: Prisma.XOR<Prisma.SeasonCreateWithoutConstructorStandingsInput, Prisma.SeasonUncheckedCreateWithoutConstructorStandingsInput>
+  connectOrCreate?: Prisma.SeasonCreateOrConnectWithoutConstructorStandingsInput
+  connect?: Prisma.SeasonWhereUniqueInput
+}
+
+export type SeasonUpdateOneRequiredWithoutConstructorStandingsNestedInput = {
+  create?: Prisma.XOR<Prisma.SeasonCreateWithoutConstructorStandingsInput, Prisma.SeasonUncheckedCreateWithoutConstructorStandingsInput>
+  connectOrCreate?: Prisma.SeasonCreateOrConnectWithoutConstructorStandingsInput
+  upsert?: Prisma.SeasonUpsertWithoutConstructorStandingsInput
+  connect?: Prisma.SeasonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SeasonUpdateToOneWithWhereWithoutConstructorStandingsInput, Prisma.SeasonUpdateWithoutConstructorStandingsInput>, Prisma.SeasonUncheckedUpdateWithoutConstructorStandingsInput>
+}
+
 export type SeasonCreateWithoutRacesInput = {
   year: number
+  driverStandings?: Prisma.DriverStandingCreateNestedManyWithoutSeasonInput
+  constructorStandings?: Prisma.ConstructorStandingCreateNestedManyWithoutSeasonInput
 }
 
 export type SeasonUncheckedCreateWithoutRacesInput = {
   year: number
+  driverStandings?: Prisma.DriverStandingUncheckedCreateNestedManyWithoutSeasonInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedCreateNestedManyWithoutSeasonInput
 }
 
 export type SeasonCreateOrConnectWithoutRacesInput = {
@@ -321,10 +367,94 @@ export type SeasonUpdateToOneWithWhereWithoutRacesInput = {
 
 export type SeasonUpdateWithoutRacesInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
+  driverStandings?: Prisma.DriverStandingUpdateManyWithoutSeasonNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUpdateManyWithoutSeasonNestedInput
 }
 
 export type SeasonUncheckedUpdateWithoutRacesInput = {
   year?: Prisma.IntFieldUpdateOperationsInput | number
+  driverStandings?: Prisma.DriverStandingUncheckedUpdateManyWithoutSeasonNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedUpdateManyWithoutSeasonNestedInput
+}
+
+export type SeasonCreateWithoutDriverStandingsInput = {
+  year: number
+  races?: Prisma.RaceCreateNestedManyWithoutSeasonInput
+  constructorStandings?: Prisma.ConstructorStandingCreateNestedManyWithoutSeasonInput
+}
+
+export type SeasonUncheckedCreateWithoutDriverStandingsInput = {
+  year: number
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutSeasonInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedCreateNestedManyWithoutSeasonInput
+}
+
+export type SeasonCreateOrConnectWithoutDriverStandingsInput = {
+  where: Prisma.SeasonWhereUniqueInput
+  create: Prisma.XOR<Prisma.SeasonCreateWithoutDriverStandingsInput, Prisma.SeasonUncheckedCreateWithoutDriverStandingsInput>
+}
+
+export type SeasonUpsertWithoutDriverStandingsInput = {
+  update: Prisma.XOR<Prisma.SeasonUpdateWithoutDriverStandingsInput, Prisma.SeasonUncheckedUpdateWithoutDriverStandingsInput>
+  create: Prisma.XOR<Prisma.SeasonCreateWithoutDriverStandingsInput, Prisma.SeasonUncheckedCreateWithoutDriverStandingsInput>
+  where?: Prisma.SeasonWhereInput
+}
+
+export type SeasonUpdateToOneWithWhereWithoutDriverStandingsInput = {
+  where?: Prisma.SeasonWhereInput
+  data: Prisma.XOR<Prisma.SeasonUpdateWithoutDriverStandingsInput, Prisma.SeasonUncheckedUpdateWithoutDriverStandingsInput>
+}
+
+export type SeasonUpdateWithoutDriverStandingsInput = {
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  races?: Prisma.RaceUpdateManyWithoutSeasonNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUpdateManyWithoutSeasonNestedInput
+}
+
+export type SeasonUncheckedUpdateWithoutDriverStandingsInput = {
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  races?: Prisma.RaceUncheckedUpdateManyWithoutSeasonNestedInput
+  constructorStandings?: Prisma.ConstructorStandingUncheckedUpdateManyWithoutSeasonNestedInput
+}
+
+export type SeasonCreateWithoutConstructorStandingsInput = {
+  year: number
+  races?: Prisma.RaceCreateNestedManyWithoutSeasonInput
+  driverStandings?: Prisma.DriverStandingCreateNestedManyWithoutSeasonInput
+}
+
+export type SeasonUncheckedCreateWithoutConstructorStandingsInput = {
+  year: number
+  races?: Prisma.RaceUncheckedCreateNestedManyWithoutSeasonInput
+  driverStandings?: Prisma.DriverStandingUncheckedCreateNestedManyWithoutSeasonInput
+}
+
+export type SeasonCreateOrConnectWithoutConstructorStandingsInput = {
+  where: Prisma.SeasonWhereUniqueInput
+  create: Prisma.XOR<Prisma.SeasonCreateWithoutConstructorStandingsInput, Prisma.SeasonUncheckedCreateWithoutConstructorStandingsInput>
+}
+
+export type SeasonUpsertWithoutConstructorStandingsInput = {
+  update: Prisma.XOR<Prisma.SeasonUpdateWithoutConstructorStandingsInput, Prisma.SeasonUncheckedUpdateWithoutConstructorStandingsInput>
+  create: Prisma.XOR<Prisma.SeasonCreateWithoutConstructorStandingsInput, Prisma.SeasonUncheckedCreateWithoutConstructorStandingsInput>
+  where?: Prisma.SeasonWhereInput
+}
+
+export type SeasonUpdateToOneWithWhereWithoutConstructorStandingsInput = {
+  where?: Prisma.SeasonWhereInput
+  data: Prisma.XOR<Prisma.SeasonUpdateWithoutConstructorStandingsInput, Prisma.SeasonUncheckedUpdateWithoutConstructorStandingsInput>
+}
+
+export type SeasonUpdateWithoutConstructorStandingsInput = {
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  races?: Prisma.RaceUpdateManyWithoutSeasonNestedInput
+  driverStandings?: Prisma.DriverStandingUpdateManyWithoutSeasonNestedInput
+}
+
+export type SeasonUncheckedUpdateWithoutConstructorStandingsInput = {
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  races?: Prisma.RaceUncheckedUpdateManyWithoutSeasonNestedInput
+  driverStandings?: Prisma.DriverStandingUncheckedUpdateManyWithoutSeasonNestedInput
 }
 
 
@@ -334,10 +464,14 @@ export type SeasonUncheckedUpdateWithoutRacesInput = {
 
 export type SeasonCountOutputType = {
   races: number
+  driverStandings: number
+  constructorStandings: number
 }
 
 export type SeasonCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   races?: boolean | SeasonCountOutputTypeCountRacesArgs
+  driverStandings?: boolean | SeasonCountOutputTypeCountDriverStandingsArgs
+  constructorStandings?: boolean | SeasonCountOutputTypeCountConstructorStandingsArgs
 }
 
 /**
@@ -357,10 +491,26 @@ export type SeasonCountOutputTypeCountRacesArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.RaceWhereInput
 }
 
+/**
+ * SeasonCountOutputType without action
+ */
+export type SeasonCountOutputTypeCountDriverStandingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DriverStandingWhereInput
+}
+
+/**
+ * SeasonCountOutputType without action
+ */
+export type SeasonCountOutputTypeCountConstructorStandingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConstructorStandingWhereInput
+}
+
 
 export type SeasonSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   year?: boolean
   races?: boolean | Prisma.Season$racesArgs<ExtArgs>
+  driverStandings?: boolean | Prisma.Season$driverStandingsArgs<ExtArgs>
+  constructorStandings?: boolean | Prisma.Season$constructorStandingsArgs<ExtArgs>
   _count?: boolean | Prisma.SeasonCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["season"]>
 
@@ -379,6 +529,8 @@ export type SeasonSelectScalar = {
 export type SeasonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"year", ExtArgs["result"]["season"]>
 export type SeasonInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   races?: boolean | Prisma.Season$racesArgs<ExtArgs>
+  driverStandings?: boolean | Prisma.Season$driverStandingsArgs<ExtArgs>
+  constructorStandings?: boolean | Prisma.Season$constructorStandingsArgs<ExtArgs>
   _count?: boolean | Prisma.SeasonCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SeasonIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -388,6 +540,8 @@ export type $SeasonPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Season"
   objects: {
     races: Prisma.$RacePayload<ExtArgs>[]
+    driverStandings: Prisma.$DriverStandingPayload<ExtArgs>[]
+    constructorStandings: Prisma.$ConstructorStandingPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     year: number
@@ -786,6 +940,8 @@ readonly fields: SeasonFieldRefs;
 export interface Prisma__SeasonClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   races<T extends Prisma.Season$racesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Season$racesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RacePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  driverStandings<T extends Prisma.Season$driverStandingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Season$driverStandingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DriverStandingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  constructorStandings<T extends Prisma.Season$constructorStandingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Season$constructorStandingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConstructorStandingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1230,6 +1386,54 @@ export type Season$racesArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.RaceScalarFieldEnum | Prisma.RaceScalarFieldEnum[]
+}
+
+/**
+ * Season.driverStandings
+ */
+export type Season$driverStandingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DriverStanding
+   */
+  select?: Prisma.DriverStandingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DriverStanding
+   */
+  omit?: Prisma.DriverStandingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DriverStandingInclude<ExtArgs> | null
+  where?: Prisma.DriverStandingWhereInput
+  orderBy?: Prisma.DriverStandingOrderByWithRelationInput | Prisma.DriverStandingOrderByWithRelationInput[]
+  cursor?: Prisma.DriverStandingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DriverStandingScalarFieldEnum | Prisma.DriverStandingScalarFieldEnum[]
+}
+
+/**
+ * Season.constructorStandings
+ */
+export type Season$constructorStandingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ConstructorStanding
+   */
+  select?: Prisma.ConstructorStandingSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ConstructorStanding
+   */
+  omit?: Prisma.ConstructorStandingOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConstructorStandingInclude<ExtArgs> | null
+  where?: Prisma.ConstructorStandingWhereInput
+  orderBy?: Prisma.ConstructorStandingOrderByWithRelationInput | Prisma.ConstructorStandingOrderByWithRelationInput[]
+  cursor?: Prisma.ConstructorStandingWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ConstructorStandingScalarFieldEnum | Prisma.ConstructorStandingScalarFieldEnum[]
 }
 
 /**

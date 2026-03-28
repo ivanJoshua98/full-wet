@@ -221,7 +221,7 @@ export type QualifyingResultGroupByOutputType = {
   _max: QualifyingResultMaxAggregateOutputType | null
 }
 
-type GetQualifyingResultGroupByPayload<T extends QualifyingResultGroupByArgs> = Prisma.PrismaPromise<
+export type GetQualifyingResultGroupByPayload<T extends QualifyingResultGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<QualifyingResultGroupByOutputType, T['by']> &
       {

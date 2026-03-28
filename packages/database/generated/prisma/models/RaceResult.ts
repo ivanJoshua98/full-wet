@@ -254,7 +254,7 @@ export type RaceResultGroupByOutputType = {
   _max: RaceResultMaxAggregateOutputType | null
 }
 
-type GetRaceResultGroupByPayload<T extends RaceResultGroupByArgs> = Prisma.PrismaPromise<
+export type GetRaceResultGroupByPayload<T extends RaceResultGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<RaceResultGroupByOutputType, T['by']> &
       {

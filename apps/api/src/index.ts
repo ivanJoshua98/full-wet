@@ -6,8 +6,10 @@ import { getDriverStandingsHandler } from './controllers/driverStandingControlle
 import { getConstructorStandingsHandler } from './controllers/constructorStandingController.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.API_PORT || 3000;
 
+// Configuraciones globales
+app.disable('x-powered-by');
 app.use(express.json());
 
 // Calendar Routes

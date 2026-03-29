@@ -12,7 +12,8 @@
     "sync:constructor-standings": "npx tsx scripts/syncConstructorStandingByYear.ts",
     "sync:race-results": "npx tsx scripts/syncRaceResultsByRound.ts",
     "sync:qualifying-results": "npx tsx scripts/syncQualifyingResultsByRound.ts",
-    "sync:sprint-results": "npx tsx scripts/syncSprintResultsByRound.ts"
+    "sync:sprint-results": "npx tsx scripts/syncSprintResultsByRound.ts",
+    "sync:races": "npx tsx scripts/syncRaces.ts"
 
   },
   "keywords": [],

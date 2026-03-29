@@ -5,25 +5,25 @@ import ClockIcon from '../icons/ClockIcon.astro';
 const { isRace = false, session } = Astro.props;
 ---
 
-<div class={`flex flex-row gap-2 justify-between items-center p-2 rounded-xl transition-all duration-300 group hover:translate-x-1 ${
+<div class={`time-schedule-item flex flex-row gap-2 justify-between items-center p-2 rounded-xl transition-all duration-300 group hover:translate-x-1 ${
   isRace 
     ? 'bg-gradient-to-r from-brand-accent/10 to-transparent border border-brand-accent/30 ring-1 ring-brand-accent/20 mt-4 shadow-[0_0_15px_rgba(0,209,255,0.05)]' 
     : 'hover:bg-white/[0.03] border border-transparent hover:border-white/10'
-}`}>
+}`} data-date={session.date}>
 
   <!-- Bloque: Calendario Fecha -->
   <div class="flex items-center gap-2 md:gap-4 w-1/3 md:w-3/4">
     <div class={`flex flex-col justify-center items-center border rounded-lg p-1 min-w-[40px] md:min-w-[50px] ${
       isRace ? 'bg-brand-accent/10 border-brand-accent/40 shadow-inner' : 'bg-brand-dark/50 border-white/10'
     }`}>
-      <span class={`text-[10px] uppercase font-bold tracking-widest ${isRace ? 'text-brand-accent' : 'text-brand-muted'}`}>
+      <span data-js="month" class={`text-[10px] uppercase font-bold tracking-widest ${isRace ? 'text-brand-accent' : 'text-brand-muted'}`}>
         {getMonthName(session.date)}
       </span>
-      <span class={`font-mono font-black ${isRace ? 'text-white' : 'text-slate-200'}`}>
+      <span data-js="day-number" class={`font-mono font-black ${isRace ? 'text-white' : 'text-slate-200'}`}>
         {getDayNumber(session.date)}
       </span>
     </div>
-    <p class="text-white font-semibold capitalize leading-none tracking-wide text-sm md:text-lg">
+    <p data-js="day-name" class="text-white font-semibold capitalize leading-none tracking-wide text-sm md:text-lg">
       {getDayName(session.date)}
     </p>
   </div>
@@ -40,10 +40,48 @@ const { isRace = false, session } = Astro.props;
   <!-- Bloque: Hora -->
   <div class="w-fit flex justify-end items-center gap-2">
     <ClockIcon size="h-5 w-5" extraClass="text-brand-muted group-hover:text-brand-accent transition-colors duration-300"/>
-    <span class={`font-mono text-lg md:text-2xl font-bold tracking-tight ${isRace ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]' : 'text-slate-100'}`}>
+    <span data-js="time" class={`font-mono text-lg md:text-2xl font-bold tracking-tight ${isRace ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]' : 'text-slate-100'}`}>
       {getTime(session.date)}
     </span>
     <span class="text-brand-muted font-bold text-sm mt-1">HS</span>
   </div>
 
 </div>
+
+<script>
+  function formatScheduleTimes() {
+    const items = document.querySelectorAll('.time-schedule-item');
+    
+    items.forEach(item => {
+      const dateStr = item.getAttribute('data-date');
+      if (!dateStr || dateStr === 'undefined') return;
+
+      const date = new Date(dateStr);
+      
+      const monthEl = item.querySelector('[data-js="month"]');
+      const dayNumEl = item.querySelector('[data-js="day-number"]');
+      const dayNameEl = item.querySelector('[data-js="day-name"]');
+      const timeEl = item.querySelector('[data-js="time"]');
+
+      if (monthEl) {
+        monthEl.textContent = date.toLocaleDateString('es', { month: 'short' }).replace('.', '');
+      }
+      if (dayNumEl) {
+        dayNumEl.textContent = date.toLocaleDateString('es', { day: '2-digit' });
+      }
+      if (dayNameEl) {
+        dayNameEl.textContent = date.toLocaleDateString('es', { weekday: 'long' });
+      }
+      if (timeEl) {
+        timeEl.textContent = date.toLocaleTimeString('es', { 
+          hour: '2-digit', 
+          minute: '2-digit', 
+          hour12: false 
+        });
+      }
+    });
+  }
+
+  document.addEventListener('astro:page-load', formatScheduleTimes);
+  formatScheduleTimes();
+</script>

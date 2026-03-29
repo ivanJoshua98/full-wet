@@ -16,6 +16,10 @@
 
   + ✔ Un feature que detecte la zona horaria del usuario y muestre los horarios de las sesiones en su zona horaria.
 
++ ### Una sección de efemérides.
+
+  + ⏳ Mostrar efemérides sobre Formula 1 por dia correspondiente al dia actual.
+
 + ### Una página de Equipos con sus datos y estadisticas.
 
   + ⏳ Incluir un comparativo directo entre los dos pilotos del mismo equipo (Head-to-Head). Mostrar el duelo interno en clasificación y carrera.

@@ -4,8 +4,8 @@
 
 Un portal informativo para entusiastas de la Fórmula 1, con escalabilidad futura a F2, F3 y F1 Academy. Una herramienta para el aficionado que muestre resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.
 
-Lista de objetivos y funcionalidades: [FUNCIONALIDADES.md](docs/FUNCIONALIDADES.md)
-Documentación de la API y Scripts: [API-SCRIPTS.md](docs/API-SCRIPTS.md)
+- Lista de objetivos y funcionalidades: [FUNCIONALIDADES.md](docs/FUNCIONALIDADES.md)
+- Documentación de la API y Scripts: [API-SCRIPTS.md](docs/API-SCRIPTS.md)
 
 ## 💻 Stack Tecnológico
 - **Frontend Framework:** Astro (Híbrido SSG + SSR).
@@ -13,7 +13,7 @@ Documentación de la API y Scripts: [API-SCRIPTS.md](docs/API-SCRIPTS.md)
 - **Base de Datos:** PostgreSQL
 - **ORM:** Prisma
 - **Estilos:** Tailwind CSS
-- **APIs Primarias:** Jolpica/Ergast (resultados/tablas).
+- **APIs Primarias:** [Jolpica/Ergast](https://github.com/jolpica/jolpica-f1) (resultados/tablas).
 
 ## 🏗️ Arquitectura del sistema
 

@@ -34,7 +34,7 @@ La API provee los datos consolidados en formato JSON al Front-End. Estos endpoin
 
 Para poder garantizar rapidez de carga mediante generación estática o renderizado de servidor rápido desde Astro, se optó por guardar toda la información en una Base de Datos relacional propia.
 
-Los scripts contenidos de forma modular bajo la sub-carpeta `apps/api/scripts/` son archivos ejecutables que se comunican con instancias externas oficiales de base de datos como **Ergast/Jolpica F1 API**, descargan los datos en bloque, los formatean a nuestro esquema y los inyectan transaccionalmente con *Prisma*.
+Los scripts contenidos de forma modular bajo la sub-carpeta `apps/api/scripts/` son archivos ejecutables que se comunican con instancias externas oficiales de base de datos como [Ergast/Jolpica F1 API](https://github.com/jolpica/jolpica-f1), se descargan los datos en bloque, se formatean a un esquema propio y se inyectan transaccionalmente con *Prisma*.
 
 ### Listado de Scripts
 
@@ -52,17 +52,22 @@ Los scripts contenidos de forma modular bajo la sub-carpeta `apps/api/scripts/` 
 
 ### Uso y Ejecución
 
-Estos scripts se diseñaron para ejecutarse mediante entornos Node / TypeScript usando herramientas como `tsx` o `ts-node` desde la raíz de `api` y poder pasarle parámetros si es que el script lo requiere.
+Estos scripts se diseñaron para ejecutarse mediante entornos Node / TypeScript usando herramientas como `tsx` o `ts-node` desde la raíz de `api` y poder pasarle parámetros si es que el script lo requiere. Por ejemplo, para sincronizar la lista de carreras del año 2024:
 
 ```bash
-pnpm run tsx scripts/syncRaces.ts <year>
+pnpm run tsx scripts/syncRaces.ts 2024
+```
+
+Adicionalmente se pueden ejecutar mediante comandos preconfigurados en el `package.json` de la API:
+```bash
+pnpm run sync:races <year>
 ```
 ```bash
-pnpm run tsx scripts/syncRaceResultsByRound.ts <year> <round>
+pnpm run sync:race-results <year> <round>
 ```
 ```bash
-pnpm run tsx scripts/syncDriverStandingByYear.ts <year>
+pnpm run sync:driver-standings <year>
 ```
 ```bash
-pnpm run tsx scripts/syncConstructorStandingByYear.ts <year>
+pnpm run sync:constructor-standings <year>
 ```

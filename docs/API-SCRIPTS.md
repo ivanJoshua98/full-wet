@@ -16,15 +16,15 @@ La API provee los datos consolidados en formato JSON al Front-End. Estos endpoin
 - `GET /api/races`
   Devuelve la colección general con el registro histórico de todas las carreras almacenadas en el sistema.
 
-- `GET /api/races/:raceId/results`
+- `GET /api/race-results/:raceId`
   Obtiene la tabla de resultados de la carrera principal perteneciente a un `raceId` específico. Devuelve las posiciones finales, puntos obtenidos por cada piloto, status de abandonos, etc.
 
 ### Rutas del Campeonato (Standings)
 
-- `GET /api/:year/driver-standings`
+- `GET /api/driver-standings/:year`
   Devuelve la tabla de posiciones del **Campeonato Mundial de Pilotos** actualizada correspondientemente a la temporada `:year`. Retorna los pilotos con todos sus puntos estandarizados.
 
-- `GET /api/:year/constructor-standings`
+- `GET /api/constructor-standings/:year`
   Devuelve la tabla de posiciones del **Campeonato Mundial de Constructores** (Equipos). El servidor retorna la suma oficial de las contribuciones de los pilotos respecto a su escudería en dicho año.
 
 ---

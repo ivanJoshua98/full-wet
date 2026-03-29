@@ -39,6 +39,7 @@ full-wet/
 │       ├── src/
 │       │   ├── controllers/ # Lógica de los Endpoints
 │       │   ├── services/    # Transformación de datos de APIs externas
+│       │   ├── routes/      # Rutas de la API
 │       │   └── index.ts     # Servidor Express
 │       └── scripts/         # Cron jobs de sincronización (Sync)
 │

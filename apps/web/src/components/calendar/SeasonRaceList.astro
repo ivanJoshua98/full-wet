@@ -4,6 +4,7 @@ import WorldIcon from "../icons/WorldIcon.astro";
 import { type models } from "types";
 import RaceDetails from "./RaceDetails.astro";
 import { getRacesByYear } from "../../controllers/raceController";
+import TouchIcon from "../icons/TouchIcon.astro";
 
 const { season } = Astro.props;
 
@@ -24,9 +25,13 @@ if (Number(season) === new Date().getFullYear()) {
       <div class="w-1.5 h-6 bg-brand-accent rounded-full shadow-[0_0_8px_#00D1FF]"></div>
       <h2 class="font-black text-white tracking-wide uppercase">Resumen de la temporada {season}</h2>
     </div>
-    <p class="text-brand-muted mt-2 ml-5 flex items-center gap-2 text-sm font-medium">
-      <WorldIcon size="h-4 w-4"/>
-      Horarios mostrados automáticamente en tu zona horaria local
+    <p class="text-brand-muted mt-2 ml-5 flex items-start gap-2 text-sm font-medium">
+      <WorldIcon size="h-5 w-5"/>
+      <span>Horarios adaptados a tu zona horaria local<span class="timezone-display text-brand-accent/80 font-bold ml-1"></span></span>
+    </p>
+    <p class="text-brand-muted mt-1 ml-5 flex items-start gap-2 text-sm font-medium">
+      <TouchIcon size="h-4 w-4"/>
+      Haz clic en una carrera para ver los resultados
     </p>
   </div>
   <!-- Contenedor del cronograma de eventos -->
@@ -59,7 +64,7 @@ if (Number(season) === new Date().getFullYear()) {
 </div>
 
 <script>
-  const setupStandingsToggle = () => {
+  function setupStandingsToggle () {
     const containers = document.querySelectorAll('.season-race-list-container');
     
     containers.forEach(container => {
@@ -101,7 +106,30 @@ if (Number(season) === new Date().getFullYear()) {
     });
   };
 
-  setupStandingsToggle();
+  function applyTimezoneDisplay() {
+    const tzDisplays = document.querySelectorAll('.timezone-display');
+    if (tzDisplays.length === 0) return;
+    
+    try {
+      // Intenta obtener la zona horaria del sistema (Ej: America/Buenos_Aires)
+      const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (timeZone) {
+        // Reemplaza los guiones bajos por espacios para mejor legibilidad
+        const readableTimeZone = timeZone.replace(/_/g, ' ');
+        tzDisplays.forEach(el => {
+          el.textContent = `(${readableTimeZone})`;
+        });
+      }
+    } catch (e) {
+      console.warn("Timezone no pudo ser detectada.");
+    }
+  }
+
+  function loadsFunctions () {
+    setupStandingsToggle();
+    applyTimezoneDisplay();
+  }
   // Compatible con ViewTransitions de Astro
-  document.addEventListener('astro:page-load', setupStandingsToggle);
+  loadsFunctions();
+  document.addEventListener('astro:page-load', loadsFunctions);
 </script>

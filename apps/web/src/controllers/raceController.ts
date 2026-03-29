@@ -3,7 +3,7 @@ import { type models } from "types";
 
 export async function getNextRace(year: number) {
   try {
-    const response = await fetch(`${API_URL}/${year}/races/next`);
+    const response = await fetch(`${API_URL}/races/${year}/next`);
     const data = await response.json();
     return data as models.Race;
   } catch (error) {
@@ -14,7 +14,7 @@ export async function getNextRace(year: number) {
 
 export async function getRacesByYear(year: number) {
   try {
-    const response = await fetch(`${API_URL}/${year}/races`);
+    const response = await fetch(`${API_URL}/races/${year}`);
     const data = await response.json();
     return data as models.Race[];
   } catch (error) {
@@ -36,7 +36,7 @@ export async function getAllRaces() {
 
 export async function getRaceResults(raceId: number) {
   try {
-    const response = await fetch(`${API_URL}/races/${raceId}/results`);
+    const response = await fetch(`${API_URL}/race-results/${raceId}`);
     const data = await response.json();
     return data as models.RaceResultTable;
   } catch (error) {

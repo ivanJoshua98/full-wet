@@ -3,7 +3,7 @@ import type { models } from "types";
 
 export async function getDriverStandings(year: number) {
   try {
-    const response = await fetch(`${API_URL}/${year}/driver-standings`);
+    const response = await fetch(`${API_URL}/driver-standings/${year}`);
     const data = await response.json();
     return data as models.DriverStanding[];
   } catch (error) {
@@ -14,7 +14,7 @@ export async function getDriverStandings(year: number) {
 
 export async function getConstructorStandings(year: number) {
   try {
-    const response = await fetch(`${API_URL}/${year}/constructor-standings`);
+    const response = await fetch(`${API_URL}/constructor-standings/${year}`);
     const data = await response.json();
     return data as models.ConstructorStanding[];
   } catch (error) {

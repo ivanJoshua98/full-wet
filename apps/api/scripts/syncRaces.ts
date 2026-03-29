@@ -82,6 +82,9 @@ async function syncCalendar(year: number) {
   console.log(`✅ Calendario ${year} actualizado en Full Wet DB`);
 }
 
-syncCalendar(2026)
+const args = process.argv.slice(2) || [2026]
+const year = parseInt(args[0]!)
+
+syncCalendar(year)
   .catch(e => console.error(e))
   .finally(() => prisma.$disconnect());

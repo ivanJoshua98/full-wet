@@ -5,22 +5,22 @@
 Un portal informativo para entusiastas de la Fórmula 1, con escalabilidad futura a F2, F3 y F1 Academy. Una herramienta para el aficionado que muestre resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.
 
 Lista de objetivos y funcionalidades: [FUNCIONALIDADES.md](docs/FUNCIONALIDADES.md)
+Documentación de la API y Scripts: [API-SCRIPTS.md](docs/API-SCRIPTS.md)
 
 ## 💻 Stack Tecnológico
-- **Frontend Framework:** Astro (SSR Mode para SEO y velocidad, con "Islands" para datos en vivo).
+- **Frontend Framework:** Astro (Híbrido SSG + SSR).
 - **Backend:** Node.js + Express
 - **Base de Datos:** PostgreSQL
 - **ORM:** Prisma
 - **Estilos:** Tailwind CSS
-- **APIs Primarias:** OpenF1 (telemetría/tiempos) y Jolpica/Ergast (resultados/tablas).
+- **APIs Primarias:** Jolpica/Ergast (resultados/tablas).
 
 ## 🏗️ Arquitectura del sistema
 
 - **Backend BFF (API Propia):** Endpoints optimizados que filtran y sirven solo la data necesaria al frontend.
 - **Capa de Datos (DB):** PostgreSQL con Prisma ORM para persistencia y modelado de datos.
-- **Capa de Presentación (Frontend):** Astro SSR para SEO y rendimiento, con "Islands" de Preact para interactividad en tiempo real.
+- **Capa de Presentación (Frontend):** Astro SSG para datos históricos + SSR para datos actuales. Configuración híbrida para SEO y rendimiento.
 - **Capa de Ingesta (Sync):** Scripts programados (Cron Jobs) que consultan APIs externas y pueblan la DB local para evitar latencia.
-- **Estrategia de Caché:** Implementación de caché en memoria para datos de sesiones en vivo durante los fines de semana de carrera.
 
 ## 📂 Estructura monorepo
 
@@ -29,17 +29,16 @@ full-wet/
 ├── apps/
 │   ├── web/                # Proyecto Astro (Frontend)
 │   │   ├── src/
-│   │   │   ├── components/  # Islas (React/Vue) y componentes Astro
+│   │   │   ├── components/  # Componentes Astro
 │   │   │   ├── layouts/     # Plantillas base (Dark mode / Blue accents)
 │   │   │   ├── pages/       # Rutas (Index, Calendar, Standings)
 │   │   │   └── utils/       # Helpers de formato (Fechas, Unidades)
-│   │   └── public/          # Assets (Logos de equipos, banderas)
+│   │   └── public/          # Assets (Logos, etc)
 │   │
 │   └── api/                # Backend con Node.js + Express (BFF)
 │       ├── src/
 │       │   ├── controllers/ # Lógica de los Endpoints
 │       │   ├── services/    # Transformación de datos de APIs externas
-│       │   ├── providers/   # Llamadas a OpenF1 / Jolpica
 │       │   └── index.ts     # Servidor Express
 │       └── scripts/         # Cron jobs de sincronización (Sync)
 │
@@ -49,10 +48,9 @@ full-wet/
 │   │    │   └── schema.prisma
 │   │    └── src/
 │   │        └── client.ts    # Cliente de Prisma exportable
-│   ├── types/                # Tipos compartidos TypeScript
-│   └── utils/                # Utilidades compartidas
+│   └── types/                # Tipos compartidos TypeScript
 │
-├── .env                      # Variables de entorno (DB_URL, API_KEYS)
+├── .env                      # Variables de entorno (DB_URL, PORTS, etc.)
 ├── package.json              # Root package.json
 └── README.md
 ```

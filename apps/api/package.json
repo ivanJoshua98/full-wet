@@ -13,14 +13,15 @@
     "sync:race-results": "npx tsx scripts/syncRaceResultsByRound.ts",
     "sync:qualifying-results": "npx tsx scripts/syncQualifyingResultsByRound.ts",
     "sync:sprint-results": "npx tsx scripts/syncSprintResultsByRound.ts",
-    "sync:races": "npx tsx scripts/syncRaces.ts"
-
+    "sync:races": "npx tsx scripts/syncRaces.ts",
+    "on-this-day": "npx tsx scripts/generateOnThisDay.ts"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "packageManager": "pnpm@10.15.0",
   "dependencies": {
+    "@google/genai": "1.47.0",
     "database": "workspace:*",
     "express": "5.2.1",
     "types": "workspace:*"

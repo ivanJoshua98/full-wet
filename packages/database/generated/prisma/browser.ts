@@ -72,3 +72,8 @@ export type DriverStanding = Prisma.DriverStandingModel
  * 
  */
 export type ConstructorStanding = Prisma.ConstructorStandingModel
+/**
+ * Model OnThisDay
+ * 
+ */
+export type OnThisDay = Prisma.OnThisDayModel

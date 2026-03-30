@@ -1,0 +1,52 @@
+---
+import { getOnThisDay } from "../../controllers/onThisDayController";
+
+const { day, month } = Astro.props;
+const onThisDay = await getOnThisDay(day, month);
+
+const monthNames = [
+  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+];
+---
+
+{onThisDay && (
+  <section class="relative overflow-hidden bg-brand-card border border-brand-accent/20 rounded-2xl w-full my-5 group shadow-[0_0_20px_rgba(0,209,255,0.05)] hover:border-brand-accent/40 transition-colors duration-500">
+    <!-- Efecto ambiental (glow) -->
+    <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand-accent rounded-full blur-[120px] opacity-10 pointer-events-none group-hover:opacity-20 transition-opacity duration-700"></div>
+
+    <div class="relative z-10 flex flex-col md:flex-row md:items-stretch divide-y md:divide-y-0 md:divide-x divide-white/10">
+      
+      <!-- Lado Izquierdo: Fecha y Header -->
+      <div class="flex flex-col items-center justify-center p-6 md:p-8 w-full md:w-56 shrink-0 bg-gradient-to-br from-brand-dark/50 to-brand-card relative">
+        <!-- Decoración trasera -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,209,255,0.05)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        <div class="relative z-10 flex flex-col items-center text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-accent/10 text-brand-accent mb-3 ring-1 ring-brand-accent/30 shadow-[0_0_15px_rgba(0,209,255,0.15)] group-hover:scale-110 transition-transform duration-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <p class="text-brand-accent font-black uppercase tracking-[0.2em] text-[10px] mb-2">Un día como hoy</p>
+          <div class="flex flex-col items-center leading-none">
+            <span class="text-4xl md:text-5xl font-black text-white tabular-nums drop-shadow-md">{day.toString().padStart(2, '0')}</span>
+            <span class="text-sm font-bold tracking-widest text-brand-muted uppercase mt-1.5">{monthNames[month - 1]}</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Lado Derecho: Historia -->
+      <div class="p-6 md:p-8 flex items-center bg-brand-card/30">
+        <p class="text-slate-300 font-medium text-base md:text-lg leading-relaxed text-balance md:pl-2 relative">
+          <span class="absolute -top-4 -left-2 text-6xl text-brand-muted/20 font-serif leading-none">"</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;{onThisDay.history}
+          <span class="inline-block ml-1 text-brand-accent animate-pulse">_</span>
+        </p>
+      </div>
+    </div>
+    <p class="text-xs leading-none text-brand-muted leading-tight text-center p-1 px-2 text-center md:text-end">
+      Optimizado con inteligencia artificial. La IA puede cometer errores, por favor, verifica la información.
+    </p>
+  </section>
+)}

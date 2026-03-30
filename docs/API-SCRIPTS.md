@@ -7,25 +7,33 @@ La API provee los datos consolidados en formato JSON al Front-End. Estos endpoin
 - `GET /api/seasons`
   Retorna un listado con todos los años (temporadas) de Fórmula 1 disponibles en la base de datos.
   
-- `GET /api/:year/races`
+- `GET /api/races/:year`
   Retorna la lista completa de carreras planificadas y pasadas para el año especificado (Ej. `2024`). Es utilizado para armar el componente calendario.
   
-- `GET /api/:year/races/next`
+- `GET /api/races/:year/next`
   Busca y retorna los detalles de la próxima carrera agendada para el año indicado. Utilizado por el componente "Next GP Countdown".
 
 - `GET /api/races`
   Devuelve la colección general con el registro histórico de todas las carreras almacenadas en el sistema.
 
-- `GET /api/races/:raceId/results`
+- `GET /api/race-results/:raceId`
   Obtiene la tabla de resultados de la carrera principal perteneciente a un `raceId` específico. Devuelve las posiciones finales, puntos obtenidos por cada piloto, status de abandonos, etc.
 
 ### Rutas del Campeonato (Standings)
 
-- `GET /api/:year/driver-standings`
+- `GET /api/driver-standings/:year`
   Devuelve la tabla de posiciones del **Campeonato Mundial de Pilotos** actualizada correspondientemente a la temporada `:year`. Retorna los pilotos con todos sus puntos estandarizados.
 
-- `GET /api/:year/constructor-standings`
+- `GET /api/constructor-standings/:year`
   Devuelve la tabla de posiciones del **Campeonato Mundial de Constructores** (Equipos). El servidor retorna la suma oficial de las contribuciones de los pilotos respecto a su escudería en dicho año.
+
+### Rutas de Efemérides
+
+- `GET /api/on-this-day`
+  Retorna un listado con todos las efemérides almacenadas hasta el momento.
+
+- `GET /api/on-this-day/:day/:month`
+  Retorna una historia generada por IA, previamente almacenada, sobre un hecho histórico de la Fórmula 1 que ocurrió en el día `:day` y mes `:month` del calendario.
 
 ---
 
@@ -50,6 +58,9 @@ Los scripts contenidos de forma modular bajo la sub-carpeta `apps/api/scripts/` 
 - **`syncConstructorStandingByYear.ts`**
   Ajusta el total general en la cuenta de Equipos y Escuderías, permitiendo la visualización exacta del campeonato de marcas en vivo.
 
+- **`generateOnThisDay.ts`**
+  Este script genera historias sobre efemérides de la Fórmula 1 que ocurrieron en un día y mes específico. Se toma como base la fecha del día en el cual se ejecuta el script y se genera una efeméride con IA. Actualmente se utiliza la API de Gemini, aunque tambien se ha desarrollado una versión que utiliza OpenRouter.
+
 ### Uso y Ejecución
 
 Estos scripts se diseñaron para ejecutarse mediante entornos Node / TypeScript usando herramientas como `tsx` o `ts-node` desde la raíz de `api` y poder pasarle parámetros si es que el script lo requiere. Por ejemplo, para sincronizar la lista de carreras del año 2024:
@@ -70,4 +81,7 @@ pnpm run sync:driver-standings <year>
 ```
 ```bash
 pnpm run sync:constructor-standings <year>
+```
+```bash
+pnpm run on-this-day
 ```

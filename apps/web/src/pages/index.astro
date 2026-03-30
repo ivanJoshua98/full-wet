@@ -8,18 +8,25 @@ import Drawer from '../components/navigation/Drawer.astro';
 import BaseSectionLayout from '../layouts/BaseSectionLayout.astro';
 import NextEventCountdown from '../components/calendar/NextEventCountdown.astro';
 import { getNextRace } from "../controllers/raceController";
+import OnThisDay from '../components/story/OnThisDay.astro';
+import Footer from '../components/footer/Footer.astro';
 
-const year = new Date().getFullYear();
+const now = new Date();
+const day = now.getDate();
+const month = now.getMonth() + 1;
+const year = now.getFullYear();
 const nextRace = await getNextRace(year);
 ---
 
 <BaseLayout title="Full Wet" description="Formula 1 en vivo. Resultados, horarios, calendario, pilotos, equipos y todo sobre la categoría reina del automovilismo.">
 	<Header />
-	<div class="flex">
+	<div class="flex flex-1">
 		<div class="hidden md:block"><Drawer /></div>
 		<BaseSectionLayout>
 			<NextEventCountdown nextRace={nextRace} />
 			<ListGPSchedule race={nextRace} />
+			<OnThisDay day={day} month={month} />
 		</BaseSectionLayout>
 	</div>
+	<Footer />
 </BaseLayout>

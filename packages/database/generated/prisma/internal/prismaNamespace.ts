@@ -394,7 +394,8 @@ export const ModelName = {
   RaceResult: 'RaceResult',
   Champion: 'Champion',
   DriverStanding: 'DriverStanding',
-  ConstructorStanding: 'ConstructorStanding'
+  ConstructorStanding: 'ConstructorStanding',
+  OnThisDay: 'OnThisDay'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -410,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "season" | "circuit" | "team" | "driver" | "race" | "qualifyingResult" | "sprintResult" | "raceResult" | "champion" | "driverStanding" | "constructorStanding"
+    modelProps: "season" | "circuit" | "team" | "driver" | "race" | "qualifyingResult" | "sprintResult" | "raceResult" | "champion" | "driverStanding" | "constructorStanding" | "onThisDay"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1228,6 +1229,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    OnThisDay: {
+      payload: Prisma.$OnThisDayPayload<ExtArgs>
+      fields: Prisma.OnThisDayFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OnThisDayFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OnThisDayFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload>
+        }
+        findFirst: {
+          args: Prisma.OnThisDayFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OnThisDayFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload>
+        }
+        findMany: {
+          args: Prisma.OnThisDayFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload>[]
+        }
+        create: {
+          args: Prisma.OnThisDayCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload>
+        }
+        createMany: {
+          args: Prisma.OnThisDayCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.OnThisDayCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload>[]
+        }
+        delete: {
+          args: Prisma.OnThisDayDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload>
+        }
+        update: {
+          args: Prisma.OnThisDayUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload>
+        }
+        deleteMany: {
+          args: Prisma.OnThisDayDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OnThisDayUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.OnThisDayUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload>[]
+        }
+        upsert: {
+          args: Prisma.OnThisDayUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OnThisDayPayload>
+        }
+        aggregate: {
+          args: Prisma.OnThisDayAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOnThisDay>
+        }
+        groupBy: {
+          args: Prisma.OnThisDayGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OnThisDayGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.OnThisDayCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OnThisDayCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1405,6 +1480,17 @@ export const ConstructorStandingScalarFieldEnum = {
 } as const
 
 export type ConstructorStandingScalarFieldEnum = (typeof ConstructorStandingScalarFieldEnum)[keyof typeof ConstructorStandingScalarFieldEnum]
+
+
+export const OnThisDayScalarFieldEnum = {
+  id: 'id',
+  day: 'day',
+  month: 'month',
+  history: 'history',
+  createdAt: 'createdAt'
+} as const
+
+export type OnThisDayScalarFieldEnum = (typeof OnThisDayScalarFieldEnum)[keyof typeof OnThisDayScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1605,6 +1691,7 @@ export type GlobalOmitConfig = {
   champion?: Prisma.ChampionOmit
   driverStanding?: Prisma.DriverStandingOmit
   constructorStanding?: Prisma.ConstructorStandingOmit
+  onThisDay?: Prisma.OnThisDayOmit
 }
 
 /* Types for Logging */

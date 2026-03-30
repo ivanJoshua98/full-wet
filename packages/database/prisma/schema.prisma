@@ -165,3 +165,14 @@ model ConstructorStanding {
 
   @@unique([seasonYear, teamId])
 }
+
+model OnThisDay {
+  id          Int      @id @default(autoincrement())
+  day         Int      
+  month       Int      
+  history     String   @db.Text
+  createdAt   DateTime @default(now())
+
+  @@unique([day, month]) // Evita duplicar la misma efeméride el mismo día
+  @@index([day, month])  // Optimiza la búsqueda diaria
+}

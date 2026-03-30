@@ -1,5 +1,5 @@
 
-### Full Wet - Funcionalidades
+# 📲 Full Wet - Funcionalidades
 
 + ### Una página principal donde se listen los eventos del dia más cercano.
 
@@ -18,7 +18,7 @@
 
 + ### Una sección de efemérides.
 
-  + ⏳ Mostrar efemérides sobre Formula 1 por dia correspondiente al dia actual.
+  + ✔ Mostrar efemérides sobre Formula 1 por dia correspondiente al dia actual.
 
 + ### Una página de Equipos con sus datos y estadisticas.
 

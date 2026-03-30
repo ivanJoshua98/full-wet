@@ -13,7 +13,10 @@ Un portal informativo para entusiastas de la Fórmula 1, con escalabilidad futur
 - **Base de Datos:** PostgreSQL
 - **ORM:** Prisma
 - **Estilos:** Tailwind CSS
-- **APIs Primarias:** [Jolpica/Ergast](https://github.com/jolpica/jolpica-f1) (resultados/tablas).
+- **APIs Primarias:** 
+  - [Jolpica/Ergast](https://github.com/jolpica/jolpica-f1) (resultados/tablas).
+  - [Gemini](https://ai.google.dev/gemini-api/docs) (generación de contenido/efemerides).
+  - [OpenRouter](https://openrouter.ai/) (generación de contenido/efemerides).
 
 ## 🏗️ Arquitectura del sistema
 
@@ -39,6 +42,7 @@ full-wet/
 │       ├── src/
 │       │   ├── controllers/ # Lógica de los Endpoints
 │       │   ├── services/    # Transformación de datos de APIs externas
+│       │   ├── routes/      # Rutas de la API
 │       │   └── index.ts     # Servidor Express
 │       └── scripts/         # Cron jobs de sincronización (Sync)
 │
@@ -62,10 +66,23 @@ Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
 | Comando                   | Acción                                           |
 | :------------------------ | :----------------------------------------------- |
 | `pnpm install`             | Instala las dependencias                            |
-| `pnpm run dev`             | Inicia el backend y el frontend en modo desarrollo (backend en `localhost:3000` y frontend en `localhost:4321`) |
-| `pnpm dev:api`             | Inicia el servidor backend de desarrollo local en `localhost:3000`      |
+| `pnpm run dev`             | Inicia el backend y el frontend en modo desarrollo (backend en `localhost:3000` y frontend en `localhost:4321` por defecto) |
+| `pnpm dev:api`             | Inicia el servidor backend de desarrollo local en `localhost:3000` por defecto     |
 | `pnpm dev:api-build`       | Construye el backend de producción en `./dist/`          |
 | `pnpm dev:api-start`       | Inicia el backend de producción     |
-| `pnpm dev:web`             | Inicia el servidor frontend de desarrollo local en `localhost:4321`      |
+| `pnpm dev:web`             | Inicia el servidor frontend de desarrollo local en `localhost:4321` por defecto      |
 | `pnpm dev:web-build`       | Construye el sitio de producción en `./dist/`          |
 | `pnpm dev:web-preview`     | Previsualiza el sitio de producción localmente, antes de desplegar     |
+
+## 📋 Variables de entorno
+
+Las variables de entorno se deben configurar en un archivo `.env` en la raíz del proyecto.
+
+- `DATABASE_URL`: URL de conexión a la base de datos
+- `API_PORT`: Definir el puerto del servidor backend si se desea cambiar el puerto por defecto
+- `API_URL`: URL de la API servida por el backend
+- `GEMINI_API_KEY`: API Key de Gemini
+- `GEMINI_DEFAULT_MODEL`: Modelo de Gemini por defecto
+- `OPENROUTER_API_KEY`: API Key de OpenRouter
+- `OPENROUTER_BASE_URL`: URL de la API de OpenRouter
+- `OPENROUTER_DEFAULT_MODEL`: Modelo de OpenRouter por defecto

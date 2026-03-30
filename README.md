@@ -13,7 +13,10 @@ Un portal informativo para entusiastas de la Fórmula 1, con escalabilidad futur
 - **Base de Datos:** PostgreSQL
 - **ORM:** Prisma
 - **Estilos:** Tailwind CSS
-- **APIs Primarias:** [Jolpica/Ergast](https://github.com/jolpica/jolpica-f1) (resultados/tablas).
+- **APIs Primarias:** 
+  - [Jolpica/Ergast](https://github.com/jolpica/jolpica-f1) (resultados/tablas).
+  - [Gemini](https://ai.google.dev/gemini-api/docs) (generación de contenido/efemerides).
+  - [OpenRouter](https://openrouter.ai/) (generación de contenido/efemerides).
 
 ## 🏗️ Arquitectura del sistema
 
@@ -78,3 +81,8 @@ Las variables de entorno se deben configurar en un archivo `.env` en la raíz de
 - `DATABASE_URL`: URL de conexión a la base de datos
 - `API_PORT`: Definir el puerto del servidor backend si se desea cambiar el puerto por defecto
 - `API_URL`: URL de la API servida por el backend
+- `GEMINI_API_KEY`: API Key de Gemini
+- `GEMINI_DEFAULT_MODEL`: Modelo de Gemini por defecto
+- `OPENROUTER_API_KEY`: API Key de OpenRouter
+- `OPENROUTER_BASE_URL`: URL de la API de OpenRouter
+- `OPENROUTER_DEFAULT_MODEL`: Modelo de OpenRouter por defecto

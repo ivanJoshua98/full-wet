@@ -9,8 +9,8 @@
   },
   "type": "module",
   "scripts": {
-    "db:migrate": "pnpm dlx prisma migrate dev",
-    "db:generate": "pnpm dlx prisma generate"
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate"
   },
   "keywords": [],
   "author": "",

@@ -61,7 +61,8 @@ export const ModelName = {
   RaceResult: 'RaceResult',
   Champion: 'Champion',
   DriverStanding: 'DriverStanding',
-  ConstructorStanding: 'ConstructorStanding'
+  ConstructorStanding: 'ConstructorStanding',
+  OnThisDay: 'OnThisDay'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -218,6 +219,17 @@ export const ConstructorStandingScalarFieldEnum = {
 } as const
 
 export type ConstructorStandingScalarFieldEnum = (typeof ConstructorStandingScalarFieldEnum)[keyof typeof ConstructorStandingScalarFieldEnum]
+
+
+export const OnThisDayScalarFieldEnum = {
+  id: 'id',
+  day: 'day',
+  month: 'month',
+  history: 'history',
+  createdAt: 'createdAt'
+} as const
+
+export type OnThisDayScalarFieldEnum = (typeof OnThisDayScalarFieldEnum)[keyof typeof OnThisDayScalarFieldEnum]
 
 
 export const SortOrder = {

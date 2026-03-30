@@ -78,4 +78,12 @@ export namespace models {
         wins: number;
         team: Team;
     }
+
+    export interface OnThisDay {
+        id: string;
+        day: number;
+        month: number;
+        history: string;
+        createdAt: Date;
+    }
 }

@@ -10,11 +10,7 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 // Carga el .env de la raíz del monorepo, modificar el path de ser necesario
 dotenv.config({ path: path.join(__dirname, "../../.env") });
 
-const connectionString = process.env["DATABASE_URL"];
-
-if (!connectionString) {
-    throw new Error("DATABASE_URL is not defined");
-}
+const connectionString = process.env["DATABASE_URL"] || "postgresql://dummy:dummy@localhost:5432/dummy";
 
 export default defineConfig({
   schema: "prisma/schema.prisma",

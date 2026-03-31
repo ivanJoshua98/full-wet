@@ -7,6 +7,11 @@ WORKDIR /app
 
 # ---- STAGE: BUILD ----
 FROM base AS build
+
+# Se define la variable de entorno para el frontend
+ARG PUBLIC_API_URL
+ENV PUBLIC_API_URL=$PUBLIC_API_URL
+
 COPY . .
 
 # Instalar dependencias para el frontend (filtra y carga apps/web y la dependencia types)
@@ -19,8 +24,10 @@ RUN pnpm --filter full-wet-frontend run build
 FROM base AS runner
 WORKDIR /app
 
+# Se define la variable de entorno para el frontend
+ARG PUBLIC_API_URL
+ENV PUBLIC_API_URL=$PUBLIC_API_URL
 ENV NODE_ENV=production
-# Astro requiere setear esto para exponer el servidor hacia Bakploy/Dokploy
 ENV HOST=0.0.0.0
 ENV PORT=4321
 
@@ -35,11 +42,10 @@ COPY --from=build /app/packages/types ./packages/types
 # Copiar el build del frontend
 COPY --from=build /app/apps/web ./apps/web
 
-# Copiar los node_modules necesarios (root y web)
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/apps/web/node_modules ./apps/web/node_modules
+# Se instalan las dependencias necesarias
+RUN pnpm install --prod --frozen-lockfile
 
 EXPOSE 4321
 
 # Iniciar el servidor Astro generado
-CMD cd apps/web && node ./dist/server/entry.mjs
+CMD pnpm --filter full-wet-frontend run start

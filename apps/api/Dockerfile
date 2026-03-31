@@ -35,8 +35,7 @@ COPY --from=build /app/pnpm-lock.yaml ./
 COPY --from=build /app/apps/api ./apps/api
 COPY --from=build /app/packages ./packages
 
-# Re-instalamos solo dependencias de producción
-# Esto reconstruye los symlinks correctamente dentro del contenedor final
+# Se instalan las dependencias necesarias
 RUN pnpm install --frozen-lockfile
 
 EXPOSE 3000

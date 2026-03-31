@@ -10,7 +10,8 @@
   "type": "module",
   "scripts": {
     "db:migrate": "prisma migrate dev",
-    "db:generate": "prisma generate"
+    "db:generate": "prisma generate",
+    "build": "prisma generate && tsc"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
   "dependencies": {
     "@prisma/adapter-pg": "7.5.0",
     "@prisma/client": "7.5.0",
+    "@prisma/client-runtime-utils": "7.6.0",
     "pg": "8.20.0"
   }
 }

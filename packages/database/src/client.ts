@@ -3,7 +3,7 @@ import url from "node:url";
 import path from "node:path";
 import pg from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
-import { PrismaClient } from "../generated/prisma/client";
+import { PrismaClient } from "../generated/prisma/client.js";
 
 const { Pool } = pg;
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
@@ -12,10 +12,6 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 dotenv.config({ path: path.join(__dirname, "../../../.env") });
 
 const connectionString = process.env["DATABASE_URL"];
-
-if (!connectionString) {
-    throw new Error("DATABASE_URL is not defined");
-}
 
 const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool as any);

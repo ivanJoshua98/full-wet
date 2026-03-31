@@ -6,6 +6,9 @@
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
+  previewFeatures = ["fullTextSearchPostgres"]
+  generatedFileExtension = "ts"
+  importFileExtension    = "ts"
 }
 
 datasource db {

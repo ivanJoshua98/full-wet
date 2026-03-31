@@ -13,12 +13,11 @@ FROM base AS build
 COPY . .
 
 # Instalar las dependencias filtrando solo lo que el API y el root necesitan
+RUN pnpm install --filter database... --frozen-lockfile
 RUN pnpm install --filter full-wet-api... --frozen-lockfile
 
-# Generar el cliente de Prisma (necesario en build-time para TypeScript)
-RUN pnpm --filter database run db:generate
-
 # Buildear el API
+RUN pnpm --filter database run build
 RUN pnpm --filter full-wet-api run build
 
 # ---- STAGE: RUNNER ----
@@ -32,22 +31,15 @@ COPY --from=build /app/package.json ./
 COPY --from=build /app/pnpm-workspace.yaml ./
 COPY --from=build /app/pnpm-lock.yaml ./
 
-# Copiar las librerías necesarias del workspace
-COPY --from=build /app/packages/database ./packages/database
-COPY --from=build /app/packages/types ./packages/types
-
 # Copiar la aplicación compilada
 COPY --from=build /app/apps/api ./apps/api
+COPY --from=build /app/packages ./packages
 
-# Copiar los node_modules. Esto garantiza que existan los symlinks del monorepo
-# y todas las dependencias instaladas en la fase de build.
-# Modificar en un futuro, mas si el proyecto crece
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/apps/api/node_modules ./apps/api/node_modules
-COPY --from=build /app/packages/database/node_modules ./packages/database/node_modules
+# Se instalan las dependencias necesarias
+RUN pnpm install --frozen-lockfile
 
 EXPOSE 3000
 
 # Se ejecuta la migración a la base de datos (se aplicarán los cambios si los hay) 
 # y a continuación se arranca el servidor API.
-CMD cd packages/database && pnpm exec prisma migrate deploy && cd ../../apps/api && pnpm run start
+CMD pnpm --filter database exec prisma migrate deploy && pnpm --filter full-wet-api run start

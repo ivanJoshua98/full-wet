@@ -8,6 +8,7 @@
     "dev": "pnpm run -r --parallel dev",
     "dev:web": "pnpm run --filter full-wet-frontend dev",
     "dev:web-build": "pnpm run --filter full-wet-frontend build",
+    "dev:web-start": "pnpm run --filter full-wet-frontend start",
     "dev:web-preview": "pnpm run --filter full-wet-frontend preview",
     "dev:api": "pnpm run --filter full-wet-api dev",
     "dev:api-build": "pnpm run --filter full-wet-api build",

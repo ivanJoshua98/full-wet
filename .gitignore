@@ -23,7 +23,10 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-/generated/prisma
+# generated prisma client
+packages/database/generated/prisma/*
+**/generated/prisma/*
+generated/
+/generated
 
 /node_modules
-

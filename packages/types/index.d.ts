@@ -1,6 +1,6 @@
 export namespace models {
     export interface Race {
-        id: string;
+        id: number;
         seasonYear: number;
         round: number;
         name: string;
@@ -11,7 +11,7 @@ export namespace models {
         secondPractice: Date | null;
         thirdPractice: Date | null;
         qualifying: Date | null;
-        circuit: Circuit;
+        circuit?: Circuit;
     }
 
     export interface Circuit {
@@ -24,13 +24,13 @@ export namespace models {
     }
 
     export interface RaceResult {
-        id: string;
-        raceId: string;
+        id: number;
+        raceId: number;
         driverId: string;
         teamId: string;
         position: number | null;
         points: number;
-        fastestLap: string | null;
+        fastestLap: boolean | null;
         driver: Driver;
         team: Team;
         grid: number | null;
@@ -50,7 +50,7 @@ export namespace models {
     export interface Team {
         id: string;
         name: string;
-        country: string;
+        base: string | null;
     }
 
     export interface RaceResultTable {
@@ -59,7 +59,7 @@ export namespace models {
     }
 
     export interface DriverStanding {
-        id: string;
+        id: number;
         seasonYear: number;
         driverId: string;
         position: number;
@@ -70,7 +70,7 @@ export namespace models {
     }
 
     export interface ConstructorStanding {
-        id: string;
+        id: number;
         seasonYear: number;
         teamId: string;
         position: number;
@@ -80,7 +80,7 @@ export namespace models {
     }
 
     export interface OnThisDay {
-        id: string;
+        id: number;
         day: number;
         month: number;
         history: string;

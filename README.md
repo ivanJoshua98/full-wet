@@ -73,16 +73,47 @@ Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
 | `pnpm dev:web`             | Inicia el servidor frontend de desarrollo local en `localhost:4321` por defecto      |
 | `pnpm dev:web-build`       | Construye el sitio de producción en `./dist/`          |
 | `pnpm dev:web-preview`     | Previsualiza el sitio de producción localmente, antes de desplegar     |
+| `pnpm dev:web-start`       | Inicia el servidor frontend de producción     |
 
-## 📋 Variables de entorno
+## 📋 Variables de entorno (para desarrollo local)
 
 Las variables de entorno se deben configurar en un archivo `.env` en la raíz del proyecto.
 
 - `DATABASE_URL`: URL de conexión a la base de datos
 - `API_PORT`: Definir el puerto del servidor backend si se desea cambiar el puerto por defecto
-- `API_URL`: URL de la API servida por el backend
+- `PUBLIC_API_URL`: URL de la API servida por el backend
 - `GEMINI_API_KEY`: API Key de Gemini
 - `GEMINI_DEFAULT_MODEL`: Modelo de Gemini por defecto
 - `OPENROUTER_API_KEY`: API Key de OpenRouter
 - `OPENROUTER_BASE_URL`: URL de la API de OpenRouter
 - `OPENROUTER_DEFAULT_MODEL`: Modelo de OpenRouter por defecto
+
+Para producción se deben configurar las variables de entorno en los archivos `.env` de cada aplicación.
+
+## Empezar a trabajar en el proyecto
+
+1. Clonar el repositorio
+```bash
+git clone https://github.com/ivanJoshua98/full-wet.git
+cd full-wet
+```
+2. Ejecutar `pnpm install`
+```bash
+pnpm install
+```
+3. Levantar base de datos (Opcional si ya tienes una. Definir nombre y credenciales en .env para el archivo docker-compose.yml)
+```bash
+docker-compose up 
+```
+4. Aplicar migraciones de prisma
+```bash
+pnpm run --filter database db:migrate
+```
+5. Generar cliente de prisma
+```bash
+pnpm run --filter database db:generate
+```
+6. Levantar el proyecto (backend y frontend)
+```bash
+pnpm run dev
+```
